@@ -47,6 +47,7 @@ $cases = [ordered]@{
 }
 $other = Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Root -ne "$env:SystemDrive\" -and $_.Free -gt 1GB } | Select-Object -First 1
 if ($other) { $cases['other drive (USB-style)'] = Join-Path $other.Root ("RigwrightPathTest-" + [guid]::NewGuid().ToString('N').Substring(0, 6)) }
+if (Test-Path '\\localhost\C$') { $cases['network share (UNC)'] = '\\localhost\C$' + (Join-Path $base 'NetShare').Substring(2) }
 if ($env:OneDrive -and (Test-Path $env:OneDrive)) { $cases['OneDrive-synced folder'] = Join-Path $env:OneDrive ("RigwrightPathTest-" + [guid]::NewGuid().ToString('N').Substring(0, 6)) }
 
 try {
@@ -54,6 +55,20 @@ try {
         Copy-Rw $cases[$k]
         Test-Start $cases[$k] -Label "$k, normal mode"
         Test-Start $cases[$k] -Portable -Label "$k, portable mode"
+    }
+
+    # Mapped drive letter: the launcher must hand the elevated engine a UNC path, because drive mappings are per logon session.
+    Import-Module (Join-Path $src 'core\Engine.psm1') -Force -DisableNameChecking
+    $letter = [char[]](90..75) | Where-Object { -not (Get-PSDrive -Name $_ -ErrorAction SilentlyContinue) } | Select-Object -First 1
+    if ($letter) {
+        & "$env:SystemRoot\System32\net.exe" use "${letter}:" '\\localhost\C$' 2>&1 | Out-Null
+        try {
+            $unc = ConvertTo-RwUncPath "${letter}:\Windows\System32\notepad.exe"
+            if ($unc -eq '\\localhost\C$\Windows\System32\notepad.exe') { Pass "mapped drive ${letter}: resolves to UNC for the elevated engine ($unc)" }
+            else { Fail "mapped drive ${letter}: expected UNC path, got $unc" }
+            $plain = ConvertTo-RwUncPath 'C:\Windows\notepad.exe'
+            if ($plain -eq 'C:\Windows\notepad.exe') { Pass 'local path is left unchanged' } else { Fail "local path changed to $plain" }
+        } finally { & "$env:SystemRoot\System32\net.exe" use "${letter}:" /delete /y 2>&1 | Out-Null }
     }
 
     # Read-only location (nothing new can be created there, like a write-protected stick or a locked share):

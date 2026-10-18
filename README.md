@@ -178,7 +178,7 @@ email addresses and user names are scrubbed from every capture.
    - Run `.\Rigwright.ps1` from PowerShell.
 4. Approve the administrator (UAC) prompt. Only the engine runs elevated; the window itself runs as you.
 
-Signed releases start their scripts with the `RemoteSigned` execution policy. Unsigned development builds use `Bypass` for that one process only.
+The launchers start the engine with `-ExecutionPolicy Bypass` for that one process only, so Rigwright also runs from a USB stick, a network share or a mapped drive. `tools\Verify-Release.ps1` checks the checksums and, on signed releases, the Authenticode signatures.
 
 **Portable mode.** By default, settings, the undo journal and logs live in `C:\ProgramData\Rigwright`, so undo keeps working even if you delete or move the Rigwright folder. Start with `-Portable` (`Start-Rigwright.cmd -Portable`) to keep everything in `.\data` beside the app instead. In that case the undo history travels with the folder. **Settings → Rigwright data** can add a Start menu shortcut or remove all Rigwright data from this PC.
 

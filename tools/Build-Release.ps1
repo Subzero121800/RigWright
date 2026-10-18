@@ -97,7 +97,7 @@ foreach ($rid in $Arch) {
     }
 
     # Signing happens before checksums so SHA256SUMS covers the signed files.
-    if (Invoke-RwSign $out) { Set-Content (Join-Path $out 'SIGNED') "Authenticode-signed release $ver ($rid). Launchers use the RemoteSigned execution policy." -Encoding ASCII }
+    if (Invoke-RwSign $out) { Set-Content (Join-Path $out 'SIGNED') "Authenticode-signed release $ver ($rid). Verify-Release.ps1 checks the signatures." -Encoding ASCII }
     else { Write-Host "$rid is not code-signed (no -CertThumbprint or -AzureSigningMetadata). SmartScreen will show 'unknown publisher'." -ForegroundColor Yellow }
 
     $lines = Get-ChildItem $out -Recurse -File | Sort-Object FullName | ForEach-Object {

@@ -46,8 +46,8 @@ The first public release combines the initial build below with these changes.
 - Opt-in "Check GitHub for new releases on startup" (off by default) and "Check for updates" in About. It never
   downloads anything.
 - Release build is **self-contained by default**, for **x64 and ARM64**, as a plain folder (no scripts extracted
-  to %TEMP%). It writes stable asset names, and adds a `SIGNED` marker when signed; launchers then use
-  `RemoteSigned` instead of `Bypass`.
+  to %TEMP%). It writes stable asset names and adds a `SIGNED` marker when signed. The launchers always use the
+  process-scoped `Bypass` policy so Rigwright also starts from network shares and mapped drives.
 - The desktop app falls back to the browser when WebView2 is missing, and supports `-Portable`.
 - `tools/Publish-Release.ps1` (GitHub Releases), `tools/New-WingetManifest.ps1` (portable winget manifest),
   `tools/Setup-GitHubRepo.ps1` (labels, good-first-issues, branch protection, secret scanning, About sidebar),

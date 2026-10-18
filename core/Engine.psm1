@@ -50,6 +50,18 @@ function Write-RwLog {
     if ($script:LogSink) { try { & $script:LogSink $line } catch { } }
 }
 
+function ConvertTo-RwUncPath {
+    <# A path on a mapped network drive (R:\...) is not visible to an elevated process, because drive
+       mappings belong to the unelevated logon session. Return the \\server\share\... form instead. #>
+    param([string]$Path)
+    if ($Path -notmatch '^([A-Za-z]):(\\.*)?$') { return $Path }
+    try {
+        $d = Get-CimInstance Win32_LogicalDisk -Filter "DeviceID='$($Matches[1]):'" -ErrorAction Stop
+        if ($d -and $d.DriveType -eq 4 -and $d.ProviderName) { return ($d.ProviderName.TrimEnd('\') + "$($Matches[2])") }
+    } catch { }
+    return $Path
+}
+
 function Test-RwAdmin {
     $id = [Security.Principal.WindowsIdentity]::GetCurrent()
     (New-Object Security.Principal.WindowsPrincipal($id)).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)

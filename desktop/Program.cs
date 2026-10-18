@@ -5,6 +5,8 @@
 // in a WebView2 window. The engine watches this process and stops when the window closes.
 
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.Json;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
@@ -47,6 +49,26 @@ internal sealed class MainForm : Form
         Shown += async (_, _) => await StartAsync();
     }
 
+    [DllImport("mpr.dll", CharSet = CharSet.Unicode)]
+    private static extern int WNetGetConnection(string localName, StringBuilder remoteName, ref int length);
+
+    // A mapped network drive (R:\...) is not visible to the elevated engine process, because drive mappings
+    // belong to the unelevated logon session. Return the \\server\share\... form for such paths.
+    private static string ToUncIfMapped(string path)
+    {
+        if (path.Length < 3 || path[1] != ':' || !char.IsLetter(path[0])) return path;
+        try
+        {
+            if (new DriveInfo(path.Substring(0, 2)).DriveType != DriveType.Network) return path;
+            var sb = new StringBuilder(1024);
+            var len = sb.Capacity;
+            if (WNetGetConnection(path.Substring(0, 2), sb, ref len) == 0 && sb.Length > 0)
+                return sb.ToString().TrimEnd('\\') + path.Substring(2);
+        }
+        catch { }
+        return path;
+    }
+
     private static string? FindScript()
     {
         // Look next to the exe, then walk up (supports running from desktop\bin\Release\...).
@@ -69,6 +91,7 @@ internal sealed class MainForm : Form
         }
 
         var appDir = Path.GetDirectoryName(script)!;
+        var engineScript = ToUncIfMapped(script);
         // Portable mode keeps everything in .\data beside the app; otherwise per-user LocalAppData (runtime files only).
         var localBase = _portable ? Path.Combine(appDir, "data") : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Rigwright");
         var runDir = Path.Combine(localBase, "run");
@@ -81,8 +104,8 @@ internal sealed class MainForm : Form
             _engine = Process.Start(new ProcessStartInfo
             {
                 FileName = ps,
-                // Signed releases (marked by the SIGNED file written at build time) run under RemoteSigned.
-                Arguments = $"-NoProfile -ExecutionPolicy {(File.Exists(Path.Combine(appDir, "SIGNED")) ? "RemoteSigned" : "Bypass")} -WindowStyle Hidden -File \"{script}\" -Server -ReadyFile \"{ready}\" -WatchPid {Environment.ProcessId}{(_portable ? " -Portable" : "")}",
+                // Bypass is process-scoped. RemoteSigned would block or prompt for scripts on a network share.
+                Arguments = $"-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"{engineScript}\" -Server -ReadyFile \"{ready}\" -WatchPid {Environment.ProcessId}{(_portable ? " -Portable" : "")}",
                 UseShellExecute = true,
                 Verb = "runas",
                 WindowStyle = ProcessWindowStyle.Hidden,

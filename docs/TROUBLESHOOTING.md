@@ -19,6 +19,13 @@ Use `Start-Rigwright.cmd` or `Rigwright.exe`; both pass `-ExecutionPolicy Bypass
 Windows marks downloaded files as blocked, run `Get-ChildItem -Recurse | Unblock-File` in the Rigwright folder
 **after** verifying the checksums.
 
+**Running from a network share or a mapped drive.**
+Rigwright runs from `\\server\share\Rigwright` or from a mapped drive such as `R:\Rigwright`. The launchers pass
+`-ExecutionPolicy Bypass` for their own process and hand the elevated engine the `\\server\share` form of the path,
+because mapped drive letters do not exist in elevated processes. Windows may show its "Open File - Security Warning"
+for `Rigwright.exe` on a share that is not in the Local intranet zone; choose Run. Settings and the undo journal are
+stored on the local PC (`C:\ProgramData\Rigwright`), not on the share, unless you start with `-Portable`.
+
 **Rigwright.exe shows "WebView2 Runtime is missing".**
 Install it from the Install page (*Runtimes → WebView2 Runtime*) or with
 `winget install Microsoft.EdgeWebView2Runtime`.

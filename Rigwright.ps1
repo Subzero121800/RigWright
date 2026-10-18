@@ -55,13 +55,15 @@ if ($Version) { $i = Get-RwInfo; "$($i.name) $($i.version)  -  $($i.copyright)";
 
 $isAdmin = Test-RwAdmin
 
-# Signed releases run under RemoteSigned; unsigned development builds need Bypass for this one process.
+# The engine process always gets -ExecutionPolicy Bypass (process scope only): RemoteSigned would block or
+# prompt for scripts started from a network share, and the user has already chosen to run Rigwright.
 $execPolicy = 'Bypass'
-try { if ((Get-AuthenticodeSignature -FilePath $PSCommandPath).Status -eq 'Valid') { $execPolicy = 'RemoteSigned' } } catch { }
+# A mapped network drive (R:\...) does not exist for the elevated engine process, so hand it the UNC path.
+$scriptPath = ConvertTo-RwUncPath $PSCommandPath
 
 function Start-RwElevated {
     param([string[]]$ArgList, [switch]$Hidden)
-    $psArgs = @('-NoProfile', '-ExecutionPolicy', $execPolicy, '-File', "`"$PSCommandPath`"") + $ArgList
+    $psArgs = @('-NoProfile', '-ExecutionPolicy', $execPolicy, '-File', "`"$scriptPath`"") + $ArgList
     if ($Portable) { $psArgs += '-Portable' }
     $sp = @{ FilePath = "$PSHOME\powershell.exe"; ArgumentList = $psArgs; PassThru = $true }
     if ($Hidden) { $sp['WindowStyle'] = 'Hidden' }
