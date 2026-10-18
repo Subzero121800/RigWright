@@ -76,12 +76,16 @@ Catalog-only change - no engine code needed.
 '@
     foreach ($i in $issues) {
         if ($have -contains $i[0]) { Write-Host "  issue exists: $($i[0])"; continue }
-        & $gh issue create --repo $Repo --title $i[0] --body $body --label 'good first issue' --label 'catalog' --label $i[1] | Out-Null
+        # PowerShell 5.1 does not escape embedded quotes when calling native programs
+        $title = $i[0].Replace('"', '\"')
+        & $gh issue create --repo $Repo --title $title --body $body --label 'good first issue' --label 'catalog' --label $i[1] | Out-Null
         Write-Host "  issue: $($i[0])"
     }
 }
 
 # ---------------------------------------------------------------- branch protection on main
+# The remaining calls may legitimately fail on private repositories; each one checks $LASTEXITCODE itself.
+$ErrorActionPreference = 'Continue'
 $protection = @{
     required_status_checks        = @{ strict = $true; contexts = @('test') }
     enforce_admins                = $false
@@ -92,17 +96,18 @@ $protection = @{
     required_linear_history       = $true
 } | ConvertTo-Json -Depth 5 -Compress
 $tmp = New-TemporaryFile; Set-Content $tmp $protection -Encoding ASCII
-& $gh api -X PUT "repos/$Repo/branches/main/protection" --input $tmp.FullName -H 'Accept: application/vnd.github+json' | Out-Null
+& $gh api -X PUT "repos/$Repo/branches/main/protection" --input $tmp.FullName -H 'Accept: application/vnd.github+json' *> $null
 if ($LASTEXITCODE) { Write-Host '  branch protection: failed (private repos need GitHub Pro; free on public repos)' -ForegroundColor Yellow } else { Write-Host '  branch protection on main: CI required, no force-push, no deletion' }
 Remove-Item $tmp -Force
 
 # ---------------------------------------------------------------- secret scanning, push protection, vulnerability reporting
 $sec = '{"security_and_analysis":{"secret_scanning":{"status":"enabled"},"secret_scanning_push_protection":{"status":"enabled"}}}'
 $tmp = New-TemporaryFile; Set-Content $tmp $sec -Encoding ASCII
-& $gh api -X PATCH "repos/$Repo" --input $tmp.FullName | Out-Null
+& $gh api -X PATCH "repos/$Repo" --input $tmp.FullName *> $null
 if ($LASTEXITCODE) { Write-Host '  secret scanning: could not enable (free on public repos; private repos need GitHub Advanced Security)' -ForegroundColor Yellow } else { Write-Host '  secret scanning + push protection: enabled' }
 Remove-Item $tmp -Force
-& $gh api -X PUT "repos/$Repo/private-vulnerability-reporting" | Out-Null
+& $gh api -X PUT "repos/$Repo/private-vulnerability-reporting" *> $null
 if ($LASTEXITCODE) { Write-Host '  private vulnerability reporting: could not enable (enable it under Settings > Code security)' -ForegroundColor Yellow } else { Write-Host '  private vulnerability reporting: enabled' }
 
 Write-Host 'Done.' -ForegroundColor Green
+exit 0

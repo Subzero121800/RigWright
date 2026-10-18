@@ -37,7 +37,10 @@ foreach ($l in Get-Content (Join-Path $dist "Rigwright-$ver-SHA256SUMS.txt")) {
 }
 
 $exists = $false
-& $gh release view $tag --repo $Repo 2>&1 | Out-Null; if (-not $LASTEXITCODE) { $exists = $true }
+# A missing release writes to stderr, which PowerShell 5.1 turns into a terminating error under 'Stop'
+$eap = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
+& $gh release view $tag --repo $Repo *> $null; if (-not $LASTEXITCODE) { $exists = $true }
+$ErrorActionPreference = $eap
 if ($exists) {
     Write-Host "Release $tag exists - replacing its assets" -ForegroundColor Yellow
     & $gh release upload $tag @assets --repo $Repo --clobber
