@@ -61,7 +61,7 @@ representative at an online or offline event.
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement, the maintainers
 at **Joseph C McGinty Jr. & ResilientMind AI LLC**, at
-**`<conduct contact email>`**. You can also use the private
+**joseph@resilientmindai.com**. You can also use the private
 "Report content" feature on GitHub.
 All complaints will be reviewed and investigated promptly and fairly.
 

@@ -18,7 +18,7 @@ Security fixes are released as patch versions. Please always use the latest rele
 
 1. **GitHub private vulnerability reporting.** On the repository, go to the **Security** tab and choose
    **Report a vulnerability**. This is the preferred method.
-2. Email the maintainers, **Joseph C McGinty Jr. & ResilientMind AI LLC**, at **`<security contact email>`**.
+2. Email the maintainers, **Joseph C McGinty Jr. & ResilientMind AI LLC**, at **security@resilientmindai.com**.
 
 Please include:
 
