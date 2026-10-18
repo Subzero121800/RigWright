@@ -1,0 +1,31 @@
+name: Bug report
+description: Something did not work or a tweak caused a problem
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Security problem? Do NOT file it here - see SECURITY.md."
+  - type: textarea
+    id: what
+    attributes: { label: What happened?, description: What you did, what you expected, what happened instead. }
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes: { label: Rigwright version, placeholder: "1.0.0" }
+    validations: { required: true }
+  - type: input
+    id: windows
+    attributes: { label: Windows edition and build, placeholder: "Windows 11 Pro 24H2 (26100.4061)" }
+    validations: { required: true }
+  - type: input
+    id: items
+    attributes: { label: Tweak / app / fix ids involved, placeholder: "net.preferIPv4, fix.resetNetwork" }
+  - type: dropdown
+    id: ai
+    attributes: { label: Was the AI assistant involved?, options: ["No", "Ollama", "Claude Code (local)", "Claude Code (LAN)"] }
+  - type: textarea
+    id: report
+    attributes: { label: System report, description: 'History & undo > Action log > Export system report. Remove anything private.', render: json }
+  - type: textarea
+    id: logs
+    attributes: { label: Log excerpt, description: "From C:\\ProgramData\\Rigwright\\logs - remove anything private.", render: text }

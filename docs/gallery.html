@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rigwright screenshots</title>
+<meta name="description" content="Interactive screenshot gallery for Rigwright, the Windows tuning tool. Swipe or use the arrows to browse; toggle dark and light.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --accent: #0f9f8f;
+    --accent-ink: #ffffff;
+    --bg: #f5f7f8;
+    --surface: #ffffff;
+    --ink: #14191c;
+    --muted: #5b6770;
+    --line: #dfe5e8;
+    --shadow: 0 10px 30px rgba(20, 25, 28, .10);
+    --frame: #e9edf0;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1416;
+      --surface: #171d20;
+      --ink: #eef2f4;
+      --muted: #97a4ac;
+      --line: #27323a;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .45);
+      --frame: #0b0f11;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1416;
+    --surface: #171d20;
+    --ink: #eef2f4;
+    --muted: #97a4ac;
+    --line: #27323a;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .45);
+    --frame: #0b0f11;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.5 "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: var(--accent); }
+
+  .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+
+  header .wrap {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 18px; padding-bottom: 14px;
+  }
+  header img { width: 36px; height: 36px; flex: none; }
+  header h1 { font-size: 1.15rem; font-weight: 600; margin: 0; letter-spacing: -.01em; flex: 1 1 auto; min-width: 0; }
+  header h1 small { display: block; font-size: .8rem; font-weight: 400; color: var(--muted); }
+  .repo {
+    text-decoration: none; font-size: .9rem; font-weight: 500;
+    padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px;
+    color: var(--ink); background: var(--surface); white-space: nowrap;
+  }
+  .repo:hover, .toggle:hover { border-color: var(--accent); }
+  .toggle {
+    font: inherit; font-size: .9rem; font-weight: 500; cursor: pointer;
+    padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px;
+    color: var(--ink); background: var(--surface); white-space: nowrap;
+  }
+  .toggle:focus-visible, .repo:focus-visible, .arrow:focus-visible, .dot:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+
+  main { flex: 1 1 auto; }
+  .gallery {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 14px;
+    margin-top: 6px;
+  }
+
+  .stage {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    width: 100%;
+    background: var(--frame);
+    border-radius: 10px;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .stage .slide-link { position: absolute; inset: 0; display: block; cursor: zoom-in; }
+  .stage img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: contain; display: block;
+    opacity: 1; transition: opacity .18s ease;
+    -webkit-user-drag: none;
+  }
+  .stage img.fading { opacity: 0; }
+
+  .arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 0; cursor: pointer; padding: 0;
+    background: rgba(15, 159, 143, .92); color: var(--accent-ink);
+    display: grid; place-items: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+    transition: background .15s ease, transform .15s ease;
+  }
+  .arrow:hover { background: var(--accent); transform: translateY(-50%) scale(1.06); }
+  .arrow.prev { left: 12px; }
+  .arrow.next { right: 12px; }
+  .arrow svg { width: 22px; height: 22px; }
+
+  .meta {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin: 14px 4px 6px;
+  }
+  .caption {
+    margin: 0; flex: 1 1 auto; min-width: 0;
+    font-size: 1rem; min-height: 1.5em;
+  }
+  .caption b { color: var(--ink); }
+  .caption span { color: var(--muted); }
+  .counter {
+    flex: none; margin-top: 2px;
+    font-size: .8rem; font-weight: 600; font-variant-numeric: tabular-nums;
+    padding: 2px 10px; border-radius: 999px;
+    background: var(--accent); color: var(--accent-ink);
+  }
+
+  .dots { display: flex; justify-content: center; gap: 8px; margin: 10px 0 2px; flex-wrap: wrap; }
+  .dot {
+    width: 10px; height: 10px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+    background: var(--line); transition: background .15s ease, transform .15s ease;
+  }
+  .dot:hover { background: var(--muted); }
+  .dot[aria-current="true"] { background: var(--accent); transform: scale(1.25); }
+
+  .hint { text-align: center; color: var(--muted); font-size: .82rem; margin: 10px 0 0; }
+
+  footer .wrap {
+    padding-top: 22px; padding-bottom: 26px;
+    color: var(--muted); font-size: .85rem; text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    header h1 { font-size: 1rem; }
+    header h1 small { display: none; }
+    .repo span { display: none; }
+    .gallery { padding: 8px; border-radius: 12px; }
+    .arrow { width: 38px; height: 38px; }
+    .arrow.prev { left: 6px; }
+    .arrow.next { right: 6px; }
+    .meta { margin: 10px 2px 4px; gap: 10px; }
+    .caption { font-size: .92rem; }
+    .hint { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stage img, .arrow, .dot { transition: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <img src="icon.svg" alt="" width="36" height="36">
+    <h1>Rigwright screenshots <small>Windows tuning with undo for every change</small></h1>
+    <button class="toggle" id="themeToggle" type="button" aria-pressed="false">Dark</button>
+    <a class="repo" href="https://github.com/Subzero121800/RigWright" rel="noopener">GitHub <span>repository</span></a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="gallery" aria-roledescription="carousel" aria-label="Rigwright screenshots">
+      <div class="stage" id="stage">
+        <a class="slide-link" id="slideLink" href="#" target="_blank" rel="noopener" title="Open full size in a new tab">
+          <img id="slideImg" alt="" draggable="false" decoding="async">
+        </a>
+        <button class="arrow prev" id="prevBtn" type="button" aria-label="Previous screenshot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="arrow next" id="nextBtn" type="button" aria-label="Next screenshot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="meta">
+        <p class="caption" id="caption" aria-live="polite"></p>
+        <div class="counter" id="counter" aria-live="polite">1 / 9</div>
+      </div>
+      <div class="dots" id="dots" role="tablist" aria-label="Choose screenshot"></div>
+      <p class="hint">Swipe, click the arrows, or use the left and right keys. Click a screenshot to open it full size.</p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">Created by Joseph C McGinty Jr. &amp; ResilientMind AI LLC</div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  // Each caption is split into the bold lead-in and the rest so the wording matches the README.
+  var SLIDES = [
+    { file: "01-dashboard.png",        title: "Dashboard",               rest: ": PC health at a glance, with a one-click action on every warning." },
+    { file: "04-tweaks.png",           title: "Tweaks with live state",  rest: ". Every setting shows exactly what it changes." },
+    { file: "15-preview-modal.png",    title: "Preview before applying", rest: ": current value → new value, and a restore point first." },
+    { file: "17-ai-conversation.png",  title: "AI assistant",            rest: " suggests a plan from the catalog; nothing runs until you approve." },
+    { file: "03-install-apps.png",     title: "Install apps",            rest: ": 127 curated apps via winget, sortable, plus search across all of winget." },
+    { file: "05-debloat.png",          title: "Debloat",                 rest: " lists what is really installed, with a safety rating for each app." },
+    { file: "08-fixes-and-tools.png",  title: "Fixes & tools",           rest: " with Favorites and a Most common section at the top." },
+    { file: "10-history-and-undo.png", title: "History & undo",          rest: ": original values are recorded, so any change can be undone." },
+    { file: "12-settings.png",         title: "Settings",                rest: ": Ollama or Claude Code, with clear per-provider privacy switches." }
+  ];
+
+  var root = document.documentElement;
+  var img = document.getElementById("slideImg");
+  var link = document.getElementById("slideLink");
+  var caption = document.getElementById("caption");
+  var counter = document.getElementById("counter");
+  var dots = document.getElementById("dots");
+  var stage = document.getElementById("stage");
+  var toggle = document.getElementById("themeToggle");
+  var index = 0;
+  var preloaded = {};
+
+  function theme() {
+    var t = root.getAttribute("data-theme");
+    if (t === "dark" || t === "light") return t;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  function src(i) { return "screenshots/gallery/" + theme() + "/" + SLIDES[i].file; }
+  function preload(i) {
+    var s = src(i);
+    if (preloaded[s]) return;
+    var p = new Image(); p.src = s; preloaded[s] = p;
+  }
+  function esc(s) { return s.replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+
+  function show(i, animate) {
+    index = (i + SLIDES.length) % SLIDES.length;
+    var s = SLIDES[index];
+    var url = src(index);
+    var apply = function () {
+      img.src = url;
+      img.alt = s.title + " screenshot";
+      link.href = url;
+      caption.innerHTML = "<b>" + esc(s.title) + "</b><span>" + esc(s.rest) + "</span>";
+      counter.textContent = (index + 1) + " / " + SLIDES.length;
+      var ds = dots.children;
+      for (var k = 0; k < ds.length; k++) ds[k].setAttribute("aria-current", k === index ? "true" : "false");
+      preload((index + 1) % SLIDES.length);
+      preload((index - 1 + SLIDES.length) % SLIDES.length);
+    };
+    if (animate && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      img.classList.add("fading");
+      var done = false;
+      var finish = function () { if (done) return; done = true; apply(); img.classList.remove("fading"); };
+      var pre = new Image();
+      pre.onload = finish; pre.onerror = finish; pre.src = url;
+      setTimeout(finish, 350);
+    } else {
+      apply();
+    }
+  }
+
+  function next() { show(index + 1, true); }
+  function prev() { show(index - 1, true); }
+
+  // Dot indicators
+  SLIDES.forEach(function (s, i) {
+    var b = document.createElement("button");
+    b.className = "dot"; b.type = "button"; b.setAttribute("role", "tab");
+    b.setAttribute("aria-label", (i + 1) + " of " + SLIDES.length + ": " + s.title);
+    b.addEventListener("click", function () { show(i, true); });
+    dots.appendChild(b);
+  });
+
+  document.getElementById("nextBtn").addEventListener("click", next);
+  document.getElementById("prevBtn").addEventListener("click", prev);
+
+  // Keyboard
+  document.addEventListener("keydown", function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.key === "ArrowRight") { next(); e.preventDefault(); }
+    else if (e.key === "ArrowLeft") { prev(); e.preventDefault(); }
+    else if (e.key === "Home") { show(0, true); e.preventDefault(); }
+    else if (e.key === "End") { show(SLIDES.length - 1, true); e.preventDefault(); }
+  });
+
+  // Touch / pointer swipe
+  var startX = null, startY = null, startT = 0, swiped = false;
+  stage.addEventListener("pointerdown", function (e) {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    startX = e.clientX; startY = e.clientY; startT = Date.now(); swiped = false;
+  });
+  stage.addEventListener("pointerup", function (e) {
+    if (startX === null) return;
+    var dx = e.clientX - startX, dy = e.clientY - startY, dt = Date.now() - startT;
+    startX = startY = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3 && dt < 800) {
+      swiped = true;
+      if (dx < 0) next(); else prev();
+    }
+  });
+  stage.addEventListener("pointercancel", function () { startX = startY = null; });
+  // Without this, a mouse drag on the link starts a native link drag and the pointer sequence is cancelled.
+  stage.addEventListener("dragstart", function (e) { e.preventDefault(); });
+  // A swipe must not also count as a click that opens the full-size image.
+  link.addEventListener("click", function (e) { if (swiped) { e.preventDefault(); swiped = false; } });
+
+  // Theme toggle. The stored choice is only a per-viewer convenience.
+  function syncToggle() {
+    var t = theme();
+    toggle.textContent = t === "dark" ? "Light" : "Dark";
+    toggle.setAttribute("aria-label", "Switch to " + (t === "dark" ? "light" : "dark") + " theme");
+    toggle.setAttribute("aria-pressed", t === "dark" ? "true" : "false");
+  }
+  toggle.addEventListener("click", function () {
+    var t = theme() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", t);
+    try { localStorage.setItem("rigwright-gallery-theme", t); } catch (err) {}
+    preloaded = {};
+    syncToggle();
+    show(index, false);
+  });
+  try {
+    var saved = localStorage.getItem("rigwright-gallery-theme");
+    if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved);
+  } catch (err) {}
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+  var onScheme = function () { if (!root.getAttribute("data-theme")) { preloaded = {}; syncToggle(); show(index, false); } };
+  if (mq.addEventListener) mq.addEventListener("change", onScheme); else if (mq.addListener) mq.addListener(onScheme);
+
+  syncToggle();
+  show(0, false);
+})();
+</script>
+</body>
+</html>

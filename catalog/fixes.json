@@ -1,0 +1,254 @@
+[
+    {
+        "id":  "fix.sfcDism",
+        "name":  "Repair Windows system files (DISM + SFC)",
+        "category":  "Repair",
+        "description":  "Downloads clean copies of damaged system components with DISM, then verifies every protected file with SFC. Run this first when Windows behaves strangely.",
+        "risk":  "low",
+        "duration":  "slow",
+        "script":  "Invoke-RwNative \"$env:SystemRoot\\System32\\Dism.exe\" \u0027/Online /Cleanup-Image /RestoreHealth\u0027 | Out-Null\nInvoke-RwNative \"$env:SystemRoot\\System32\\sfc.exe\" \u0027/scannow\u0027 | Out-Null\n\u0027Finished. If SFC repaired files, restart your PC.\u0027"
+    },
+    {
+        "id":  "fix.resetWU",
+        "name":  "Reset Windows Update",
+        "category":  "Repair",
+        "description":  "Stops update services, renames the SoftwareDistribution and catroot2 caches (kept as .bak), re-registers components and restarts the services. Fixes stuck or failing updates.",
+        "risk":  "low",
+        "duration":  "medium",
+        "script":  "$svc = \u0027wuauserv\u0027,\u0027bits\u0027,\u0027cryptsvc\u0027,\u0027msiserver\u0027,\u0027UsoSvc\u0027\nforeach ($s in $svc) { Stop-Service $s -Force -ErrorAction SilentlyContinue }\n$stamp = Get-Date -Format \u0027yyyyMMddHHmmss\u0027\nforeach ($d in \"$env:SystemRoot\\SoftwareDistribution\", \"$env:SystemRoot\\System32\\catroot2\") { if (Test-Path $d) { Rename-Item $d \"$(Split-Path $d -Leaf).bak$stamp\" -ErrorAction SilentlyContinue; \"Renamed $d\" } }\nforeach ($s in \u0027wuauserv\u0027,\u0027bits\u0027,\u0027cryptsvc\u0027) { Set-Service $s -StartupType Manual -ErrorAction SilentlyContinue }\nSet-Service bits -StartupType AutomaticDelayedStart -ErrorAction SilentlyContinue\nforeach ($s in $svc) { Start-Service $s -ErrorAction SilentlyContinue }\n\u0027Windows Update has been reset. Check for updates in Settings.\u0027"
+    },
+    {
+        "id":  "fix.resetNetwork",
+        "name":  "Reset network stack",
+        "category":  "Network",
+        "description":  "Resets Winsock and TCP/IP, flushes DNS and renews DHCP. Fixes \"connected, no internet\" after VPN or tweak mishaps.",
+        "risk":  "medium",
+        "duration":  "fast",
+        "script":  "Invoke-RwNative \"$env:SystemRoot\\System32\\netsh.exe\" \u0027winsock reset\u0027 | Out-Null\nInvoke-RwNative \"$env:SystemRoot\\System32\\netsh.exe\" \u0027int ip reset\u0027 | Out-Null\nInvoke-RwNative \"$env:SystemRoot\\System32\\ipconfig.exe\" \u0027/flushdns\u0027 | Out-Null\n\u0027Network stack reset. Restart your PC to finish.\u0027"
+    },
+    {
+        "id":  "fix.flushDns",
+        "name":  "Flush DNS cache",
+        "category":  "Network",
+        "description":  "Clears cached DNS lookups. Fixes websites that moved or will not load.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Clear-DnsClientCache; \"DNS cache cleared\""
+    },
+    {
+        "id":  "dns.cloudflare",
+        "name":  "Set DNS: Cloudflare (1.1.1.1)",
+        "category":  "Network",
+        "description":  "Fast, privacy-focused DNS on all connected adapters.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "$ad = Get-NetAdapter -Physical -ErrorAction SilentlyContinue | Where-Object Status -eq \u0027Up\u0027\nforeach ($a in $ad) { Set-DnsClientServerAddress -InterfaceIndex $a.ifIndex -ServerAddresses @(\u00271.1.1.1\u0027,\u00271.0.0.1\u0027,\u00272606:4700:4700::1111\u0027,\u00272606:4700:4700::1001\u0027); \"$($a.Name): DNS set to Cloudflare\" }\nClear-DnsClientCache"
+    },
+    {
+        "id":  "dns.quad9",
+        "name":  "Set DNS: Quad9 (malware blocking)",
+        "category":  "Network",
+        "description":  "DNS that blocks known malicious domains.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "$ad = Get-NetAdapter -Physical -ErrorAction SilentlyContinue | Where-Object Status -eq \u0027Up\u0027\nforeach ($a in $ad) { Set-DnsClientServerAddress -InterfaceIndex $a.ifIndex -ServerAddresses @(\u00279.9.9.9\u0027,\u0027149.112.112.112\u0027,\u00272620:fe::fe\u0027,\u00272620:fe::9\u0027); \"$($a.Name): DNS set to Quad9\" }\nClear-DnsClientCache"
+    },
+    {
+        "id":  "dns.google",
+        "name":  "Set DNS: Google (8.8.8.8)",
+        "category":  "Network",
+        "description":  "Google Public DNS.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "$ad = Get-NetAdapter -Physical -ErrorAction SilentlyContinue | Where-Object Status -eq \u0027Up\u0027\nforeach ($a in $ad) { Set-DnsClientServerAddress -InterfaceIndex $a.ifIndex -ServerAddresses @(\u00278.8.8.8\u0027,\u00278.8.4.4\u0027,\u00272001:4860:4860::8888\u0027,\u00272001:4860:4860::8844\u0027); \"$($a.Name): DNS set to Google\" }\nClear-DnsClientCache"
+    },
+    {
+        "id":  "dns.adguard",
+        "name":  "Set DNS: AdGuard (ad blocking)",
+        "category":  "Network",
+        "description":  "DNS that blocks ads and trackers network-wide.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "$ad = Get-NetAdapter -Physical -ErrorAction SilentlyContinue | Where-Object Status -eq \u0027Up\u0027\nforeach ($a in $ad) { Set-DnsClientServerAddress -InterfaceIndex $a.ifIndex -ServerAddresses @(\u002794.140.14.14\u0027,\u002794.140.15.15\u0027,\u00272a10:50c0::ad1:ff\u0027,\u00272a10:50c0::ad2:ff\u0027); \"$($a.Name): DNS set to AdGuard\" }\nClear-DnsClientCache"
+    },
+    {
+        "id":  "dns.auto",
+        "name":  "Set DNS: automatic (router / ISP)",
+        "category":  "Network",
+        "description":  "Removes custom DNS and goes back to DHCP-provided servers.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "foreach ($a in (Get-NetAdapter -Physical -ErrorAction SilentlyContinue | Where-Object Status -eq \u0027Up\u0027)) { Set-DnsClientServerAddress -InterfaceIndex $a.ifIndex -ResetServerAddresses; \"$($a.Name): DNS automatic\" }\nClear-DnsClientCache"
+    },
+    {
+        "id":  "fix.clearTemp",
+        "name":  "Delete temporary files",
+        "category":  "Cleanup",
+        "description":  "Deletes files older than 1 day from your Temp folder and the Windows Temp folder. Files in use are skipped.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "$before = 0; $removed = 0\nforeach ($d in @($env:TEMP, \"$env:SystemRoot\\Temp\")) {\n  Get-ChildItem $d -Recurse -Force -File -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -lt (Get-Date).AddDays(-1) } | ForEach-Object { $before += $_.Length; try { Remove-Item $_.FullName -Force -ErrorAction Stop; $removed += $_.Length } catch { } }\n  Get-ChildItem $d -Recurse -Force -Directory -ErrorAction SilentlyContinue | Sort-Object { $_.FullName.Length } -Descending | ForEach-Object { if (-not (Get-ChildItem $_.FullName -Force -ErrorAction SilentlyContinue)) { Remove-Item $_.FullName -Force -ErrorAction SilentlyContinue } }\n}\n\"Freed {0:N1} MB\" -f ($removed / 1MB)"
+    },
+    {
+        "id":  "fix.diskCleanup",
+        "name":  "Deep disk cleanup",
+        "category":  "Cleanup",
+        "description":  "Runs Disk Cleanup with every safe category (update leftovers, delivery optimization cache, thumbnails, error reports...) plus component store cleanup.",
+        "risk":  "low",
+        "duration":  "slow",
+        "script":  "$vc = \u0027HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VolumeCaches\u0027\n$skip = \u0027DownloadsFolder\u0027,\u0027Recycle Bin\u0027\nGet-ChildItem $vc | Where-Object { $skip -notcontains $_.PSChildName } | ForEach-Object { Set-ItemProperty $_.PSPath -Name StateFlags4242 -Value 2 -Type DWord -ErrorAction SilentlyContinue }\nStart-Process \"$env:SystemRoot\\System32\\cleanmgr.exe\" \u0027/sagerun:4242\u0027 -Wait\nInvoke-RwNative \"$env:SystemRoot\\System32\\Dism.exe\" \u0027/Online /Cleanup-Image /StartComponentCleanup\u0027 | Out-Null\n\u0027Disk cleanup finished (Downloads and Recycle Bin were not touched).\u0027"
+    },
+    {
+        "id":  "fix.reinstallWinget",
+        "name":  "Repair winget",
+        "category":  "Apps",
+        "description":  "Reinstalls App Installer (winget) and resets its sources. Fixes \"winget not recognized\" and source errors.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Install-RwWinget\n$wg = Get-RwWinget\nif ($wg) { Invoke-RwNative $wg \u0027source reset --force --disable-interactivity\u0027 | Out-Null; Invoke-RwNative $wg \u0027source update --disable-interactivity\u0027 | Out-Null }\n\u0027winget repaired\u0027"
+    },
+    {
+        "id":  "fix.defenderQuick",
+        "name":  "Microsoft Defender: quick scan",
+        "category":  "Security",
+        "description":  "Updates signatures and runs a quick malware scan.",
+        "risk":  "low",
+        "duration":  "medium",
+        "script":  "Update-MpSignature -ErrorAction SilentlyContinue; Start-MpScan -ScanType QuickScan; $t = Get-MpThreatDetection; if ($t) { \"Threats found: $(@($t).Count) - see Windows Security\" } else { \"No threats found\" }"
+    },
+    {
+        "id":  "fix.defenderFull",
+        "name":  "Microsoft Defender: full scan",
+        "category":  "Security",
+        "description":  "Updates signatures and scans every file. Can take an hour or more.",
+        "risk":  "low",
+        "duration":  "slow",
+        "script":  "Update-MpSignature -ErrorAction SilentlyContinue; Start-MpScan -ScanType FullScan; $t = Get-MpThreatDetection; if ($t) { \"Threats found: $(@($t).Count) - see Windows Security\" } else { \"No threats found\" }"
+    },
+    {
+        "id":  "fix.defenderOffline",
+        "name":  "Microsoft Defender: offline boot scan",
+        "category":  "Security",
+        "description":  "Restarts the PC into a Defender offline scan to remove rootkits. Your PC WILL restart about a minute after this starts.",
+        "risk":  "medium",
+        "duration":  "fast",
+        "script":  "Start-MpWDOScan; \"Offline scan scheduled - the PC restarts shortly\""
+    },
+    {
+        "id":  "fix.timeSync",
+        "name":  "Fix clock: sync time with pool.ntp.org",
+        "category":  "Repair",
+        "description":  "Points Windows Time at the public NTP pool and forces a resync. Fixes certificate errors caused by a wrong clock.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Set-Service w32time -StartupType Automatic; Start-Service w32time -ErrorAction SilentlyContinue\nInvoke-RwNative \"$env:SystemRoot\\System32\\w32tm.exe\" \u0027/config /manualpeerlist:\"pool.ntp.org time.windows.com\" /syncfromflags:manual /reliable:yes /update\u0027 | Out-Null\nInvoke-RwNative \"$env:SystemRoot\\System32\\w32tm.exe\" \u0027/resync /force\u0027 | Out-Null\n\"Time now: $(Get-Date)\""
+    },
+    {
+        "id":  "fix.iconCache",
+        "name":  "Rebuild icon and thumbnail cache",
+        "category":  "Repair",
+        "description":  "Fixes blank or wrong icons and thumbnails. Explorer restarts.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Get-Process explorer -ErrorAction SilentlyContinue | Stop-Process -Force\nRemove-Item \"$env:LOCALAPPDATA\\IconCache.db\" -Force -ErrorAction SilentlyContinue\nRemove-Item \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Explorer\\iconcache_*.db\",\"$env:LOCALAPPDATA\\Microsoft\\Windows\\Explorer\\thumbcache_*.db\" -Force -ErrorAction SilentlyContinue\nStart-Sleep 1; if (-not (Get-Process explorer -ErrorAction SilentlyContinue)) { Start-Process explorer.exe }\n\u0027Icon cache rebuilt\u0027"
+    },
+    {
+        "id":  "fix.storeReset",
+        "name":  "Reset Microsoft Store cache",
+        "category":  "Apps",
+        "description":  "Clears the Store cache (wsreset). Fixes Store downloads that will not start.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Start-Process \"$env:SystemRoot\\System32\\wsreset.exe\" -Wait; \"Store cache reset\""
+    },
+    {
+        "id":  "fix.reRegisterApps",
+        "name":  "Re-register built-in apps",
+        "category":  "Apps",
+        "description":  "Re-registers every installed Store/system app for all users. Fixes Start menu, Settings or Calculator not opening.",
+        "risk":  "low",
+        "duration":  "slow",
+        "script":  "$n = 0\nGet-AppxPackage -AllUsers | Where-Object { $_.InstallLocation -and (Test-Path \"$($_.InstallLocation)\\AppxManifest.xml\") } | ForEach-Object { try { Add-AppxPackage -DisableDevelopmentMode -Register \"$($_.InstallLocation)\\AppxManifest.xml\" -ErrorAction Stop; $n++ } catch { } }\n\"Re-registered $n packages\""
+    },
+    {
+        "id":  "fix.printSpooler",
+        "name":  "Fix stuck print queue",
+        "category":  "Repair",
+        "description":  "Stops the print spooler, clears stuck jobs and restarts it.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Stop-Service Spooler -Force\nRemove-Item \"$env:SystemRoot\\System32\\spool\\PRINTERS\\*\" -Force -Recurse -ErrorAction SilentlyContinue\nStart-Service Spooler\n\u0027Print queue cleared\u0027"
+    },
+    {
+        "id":  "fix.audio",
+        "name":  "Restart audio services",
+        "category":  "Repair",
+        "description":  "Restarts Windows Audio. Fixes sudden loss of sound without a reboot.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Restart-Service AudioEndpointBuilder -Force; Start-Service Audiosrv; \"Audio restarted\""
+    },
+    {
+        "id":  "fix.chkdsk",
+        "name":  "Check system drive for errors (online scan)",
+        "category":  "Repair",
+        "description":  "Runs a read-only online scan of the system drive. Reports problems without locking the disk.",
+        "risk":  "low",
+        "duration":  "medium",
+        "script":  "Invoke-RwNative \"$env:SystemRoot\\System32\\chkdsk.exe\" \"$env:SystemDrive /scan\" | Out-Null"
+    },
+    {
+        "id":  "fix.wmi",
+        "name":  "Repair WMI repository",
+        "category":  "Repair",
+        "description":  "Verifies and salvages the WMI repository. Fixes tools that cannot read system information.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Invoke-RwNative \"$env:SystemRoot\\System32\\wbem\\winmgmt.exe\" \u0027/verifyrepository\u0027 | Out-Null\nInvoke-RwNative \"$env:SystemRoot\\System32\\wbem\\winmgmt.exe\" \u0027/salvagerepository\u0027 | Out-Null"
+    },
+    {
+        "id":  "fix.enableRestore",
+        "name":  "Turn on System Restore (5% of C:)",
+        "category":  "Repair",
+        "description":  "Enables System Restore on the system drive and reserves 5% of space for restore points. Strongly recommended before tweaking.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Enable-ComputerRestore -Drive \"$env:SystemDrive\\\"\nInvoke-RwNative \"$env:SystemRoot\\System32\\vssadmin.exe\" \"resize shadowstorage /for=$env:SystemDrive /on=$env:SystemDrive /maxsize=5%\" | Out-Null\n\u0027System Restore enabled\u0027"
+    },
+    {
+        "id":  "fix.driverBackup",
+        "name":  "Back up all drivers to the Desktop",
+        "category":  "Tools",
+        "description":  "Exports every third-party driver to Desktop\\DriverBackup - handy before a reinstall.",
+        "risk":  "low",
+        "duration":  "medium",
+        "script":  "$d = Join-Path ([Environment]::GetFolderPath(\u0027Desktop\u0027)) (\u0027DriverBackup-\u0027 + (Get-Date -Format \u0027yyyyMMdd\u0027))\nNew-Item -ItemType Directory -Force $d | Out-Null\n$r = Export-WindowsDriver -Online -Destination $d\n\"Exported $(@($r).Count) drivers to $d\""
+    },
+    {
+        "id":  "fix.batteryReport",
+        "name":  "Battery health report",
+        "category":  "Tools",
+        "description":  "Creates a detailed battery report (design vs. current capacity) on your Desktop.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "$f = Join-Path ([Environment]::GetFolderPath(\u0027Desktop\u0027)) \u0027battery-report.html\u0027\nInvoke-RwNative \"$env:SystemRoot\\System32\\powercfg.exe\" \"/batteryreport /output `\"$f`\"\" | Out-Null\n\"Saved $f\""
+    },
+    {
+        "id":  "fix.wifiReport",
+        "name":  "Wi-Fi diagnostics report",
+        "category":  "Tools",
+        "description":  "Generates the built-in WLAN report (disconnects, errors) and saves its location.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Invoke-RwNative \"$env:SystemRoot\\System32\\netsh.exe\" \"wlan show wlanreport\" | Out-Null; \"Report: C:\\ProgramData\\Microsoft\\Windows\\WlanReport\\wlan-report-latest.html\""
+    },
+    {
+        "id":  "fix.updateScan",
+        "name":  "Check for Windows updates now",
+        "category":  "Repair",
+        "description":  "Opens Windows Update and starts a scan.",
+        "risk":  "low",
+        "duration":  "fast",
+        "script":  "Start-Process \"ms-settings:windowsupdate-action\"; \"Windows Update opened\""
+    }
+]

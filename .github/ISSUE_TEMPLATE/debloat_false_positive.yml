@@ -1,0 +1,22 @@
+name: Debloat false positive
+description: An app is marked "safe" (or listed as bloat) but removing it broke something
+labels: [debloat, bug]
+body:
+  - type: input
+    id: package
+    attributes: { label: Package name, description: "As shown on the Debloat page, e.g. Microsoft.YourPhone" }
+    validations: { required: true }
+  - type: textarea
+    id: broke
+    attributes: { label: What stopped working after removal? }
+    validations: { required: true }
+  - type: input
+    id: windows
+    attributes: { label: Windows edition and build, placeholder: "Windows 11 Pro 24H2 (26100.4061)" }
+    validations: { required: true }
+  - type: dropdown
+    id: restored
+    attributes: { label: Did "Restore removed..." bring it back?, options: ["Yes", "No", "Did not try"] }
+  - type: textarea
+    id: report
+    attributes: { label: System report, description: "History & undo > Action log > Export system report (remove anything private)", render: json }

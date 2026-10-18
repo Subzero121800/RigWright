@@ -1,0 +1,1535 @@
+[
+    {
+        "id":  "privacy.telemetry",
+        "name":  "Reduce diagnostic data (telemetry)",
+        "category":  "Privacy",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Sets diagnostic data to the minimum your edition allows, stops the Connected User Experiences service and disables the compatibility-appraiser and CEIP data collection tasks.",
+        "sideEffects":  "Windows Insider builds require optional diagnostic data. Home/Pro treat 0 as \"Required only\".",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection",
+                             "name":  "AllowTelemetry",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\DataCollection",
+                             "name":  "AllowTelemetry",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Siuf\\Rules",
+                             "name":  "NumberOfSIUFInPeriod",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ],
+        "services":  [
+                         {
+                             "name":  "DiagTrack",
+                             "startup":  "Disabled",
+                             "undo":  "Automatic"
+                         }
+                     ],
+        "tasks":  [
+                      {
+                          "path":  "\\Microsoft\\Windows\\Application Experience\\",
+                          "name":  "Microsoft Compatibility Appraiser",
+                          "state":  "Disabled"
+                      },
+                      {
+                          "path":  "\\Microsoft\\Windows\\Customer Experience Improvement Program\\",
+                          "name":  "Consolidator",
+                          "state":  "Disabled"
+                      },
+                      {
+                          "path":  "\\Microsoft\\Windows\\Customer Experience Improvement Program\\",
+                          "name":  "UsbCeip",
+                          "state":  "Disabled"
+                      },
+                      {
+                          "path":  "\\Microsoft\\Windows\\Feedback\\Siuf\\",
+                          "name":  "DmClient",
+                          "state":  "Disabled"
+                      },
+                      {
+                          "path":  "\\Microsoft\\Windows\\Feedback\\Siuf\\",
+                          "name":  "DmClientOnScenarioDownload",
+                          "state":  "Disabled"
+                      }
+                  ],
+        "restart":  "none"
+    },
+    {
+        "id":  "privacy.activityHistory",
+        "name":  "Disable Activity History",
+        "category":  "Privacy",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Stops Windows from collecting and uploading a timeline of the apps, files and sites you use.",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+                             "name":  "EnableActivityFeed",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+                             "name":  "PublishUserActivities",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+                             "name":  "UploadUserActivities",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "privacy.advertisingId",
+        "name":  "Disable advertising ID",
+        "category":  "Privacy",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Turns off the per-user advertising ID apps use for personalized ads (same switch as Settings \u003e Privacy \u003e General).",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo",
+                             "name":  "Enabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "privacy.tailored",
+        "name":  "Disable tailored experiences",
+        "category":  "Privacy",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Stops Microsoft using your diagnostic data to show personalized tips, ads and recommendations.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Privacy",
+                             "name":  "TailoredExperiencesWithDiagnosticDataEnabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "privacy.consumerFeatures",
+        "name":  "Block auto-installed promoted apps",
+        "category":  "Privacy",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Prevents Windows from silently installing promoted apps and games (Candy Crush, TikTok, etc.) for new users.",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent",
+                             "name":  "DisableWindowsConsumerFeatures",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "privacy.suggestions",
+        "name":  "Disable suggestions, tips and \"suggested content\"",
+        "category":  "Privacy",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Turns off suggested apps in Start, tips and tricks notifications, the post-update welcome experience and suggested content in Settings.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                             "name":  "SilentInstalledAppsEnabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                             "name":  "SystemPaneSuggestionsEnabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                             "name":  "SubscribedContent-338388Enabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                             "name":  "SubscribedContent-338389Enabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                             "name":  "SubscribedContent-353694Enabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                             "name":  "SubscribedContent-353696Enabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                             "name":  "SubscribedContent-310093Enabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                             "name":  "SoftLandingEnabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\UserProfileEngagement",
+                             "name":  "ScoobeSystemSettingEnabled",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "privacy.lockScreenAds",
+        "name":  "Disable lock screen fun facts and tips",
+        "category":  "Privacy",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Removes the \"fun facts, tips, tricks and more\" overlay and ads from the lock screen. Spotlight wallpaper itself keeps working.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                             "name":  "RotatingLockScreenOverlayEnabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                             "name":  "SubscribedContent-338387Enabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "privacy.bingSearch",
+        "name":  "Disable Bing web results in Start search",
+        "category":  "Privacy",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Start menu search only searches your PC and apps, not the web. Faster and more private.",
+        "sideEffects":  "Web answers no longer appear in Start search.",
+        "restart":  "explorer",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search",
+                             "name":  "BingSearchEnabled",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Policies\\Microsoft\\Windows\\Explorer",
+                             "name":  "DisableSearchBoxSuggestions",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ]
+    },
+    {
+        "id":  "privacy.inking",
+        "name":  "Disable inking \u0026 typing personalization",
+        "category":  "Privacy",
+        "risk":  "low",
+        "description":  "Stops Windows building a personal dictionary from what you type and write.",
+        "sideEffects":  "Handwriting recognition and text suggestions may be slightly less accurate.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\InputPersonalization",
+                             "name":  "RestrictImplicitInkCollection",
+                             "type":  "DWord",
+                             "value":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\InputPersonalization",
+                             "name":  "RestrictImplicitTextCollection",
+                             "type":  "DWord",
+                             "value":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\InputPersonalization\\TrainedDataStore",
+                             "name":  "HarvestContacts",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Personalization\\Settings",
+                             "name":  "AcceptedPrivacyPolicy",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "privacy.location",
+        "name":  "Disable location services",
+        "category":  "Privacy",
+        "risk":  "medium",
+        "description":  "Denies location access system-wide (Settings \u003e Privacy \u003e Location).",
+        "sideEffects":  "Find My Device, Maps, Weather auto-location and automatic time zone stop working.",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\location",
+                             "name":  "Value",
+                             "type":  "String",
+                             "value":  "Deny",
+                             "undo":  "Allow"
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "privacy.deviceMetadata",
+        "name":  "Block device companion app auto-downloads",
+        "category":  "Privacy",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Stops Windows fetching device metadata and OEM companion apps (e.g. vendor control panels) when you plug in hardware.",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Device Metadata",
+                             "name":  "PreventDeviceMetadataFromNetwork",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "privacy.wpbt",
+        "name":  "Disable firmware-injected software (WPBT)",
+        "category":  "Privacy",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Blocks the Windows Platform Binary Table, which lets motherboard firmware silently install vendor software (e.g. Armoury Crate) on every clean install.",
+        "sideEffects":  "Some OEM anti-theft tools (Absolute/Computrace) rely on WPBT.",
+        "restart":  "reboot",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager",
+                             "name":  "DisableWpbtExecution",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ]
+    },
+    {
+        "id":  "ai.recall",
+        "name":  "Disable Recall snapshots",
+        "category":  "AI \u0026 Copilot",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Prevents Recall from saving screenshots of your activity (Copilot+ PCs).",
+        "minBuild":  26100,
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Policies\\Microsoft\\Windows\\WindowsAI",
+                             "name":  "DisableAIDataAnalysis",
+                             "type":  "DWord",
+                             "value":  1
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsAI",
+                             "name":  "DisableAIDataAnalysis",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "ai.clickToDo",
+        "name":  "Disable Click to Do",
+        "category":  "AI \u0026 Copilot",
+        "risk":  "low",
+        "description":  "Turns off the Click to Do AI overlay (Win + click) on Copilot+ PCs.",
+        "minBuild":  26100,
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Policies\\Microsoft\\Windows\\WindowsAI",
+                             "name":  "DisableClickToDo",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "ai.copilot",
+        "name":  "Disable Windows Copilot",
+        "category":  "AI \u0026 Copilot",
+        "risk":  "low",
+        "description":  "Turns off the legacy Copilot sidebar and hides the Copilot taskbar button. On 24H2+ Copilot is a normal app - remove it on the Debloat page.",
+        "restart":  "explorer",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Policies\\Microsoft\\Windows\\WindowsCopilot",
+                             "name":  "TurnOffWindowsCopilot",
+                             "type":  "DWord",
+                             "value":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "ShowCopilotButton",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ],
+        "recommended":  false
+    },
+    {
+        "id":  "ai.appsAI",
+        "name":  "Disable AI features in Notepad and Paint",
+        "category":  "AI \u0026 Copilot",
+        "risk":  "low",
+        "description":  "Turns off Copilot/Rewrite in Notepad and Cocreator, Image Creator and Generative Fill in Paint.",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\WindowsNotepad",
+                             "name":  "DisableAIFeatures",
+                             "type":  "DWord",
+                             "value":  1
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Paint",
+                             "name":  "DisableCocreator",
+                             "type":  "DWord",
+                             "value":  1
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Paint",
+                             "name":  "DisableGenerativeFill",
+                             "type":  "DWord",
+                             "value":  1
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Paint",
+                             "name":  "DisableImageCreator",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "ai.chromeLocalModel",
+        "name":  "Stop Chrome downloading on-device AI models",
+        "category":  "AI \u0026 Copilot",
+        "risk":  "low",
+        "description":  "Prevents Google Chrome from downloading its multi-GB local Gemini Nano model.",
+        "sideEffects":  "Chrome on-device AI features (Help me write, etc.) will be unavailable. Chrome shows \"managed by your organization\".",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Google\\Chrome",
+                             "name":  "GenAILocalFoundationalModelSettings",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "ai.edgeSidebar",
+        "name":  "Disable Edge Copilot sidebar",
+        "category":  "AI \u0026 Copilot",
+        "risk":  "low",
+        "description":  "Removes the Copilot/Discover sidebar from Microsoft Edge.",
+        "sideEffects":  "Edge shows \"managed by your organization\".",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge",
+                             "name":  "HubsSidebarEnabled",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "perf.servicesManual",
+        "name":  "Set rarely used auto-start services to Manual",
+        "category":  "Performance",
+        "risk":  "low",
+        "description":  "A short, conservative list (Maps broker, Edge/Google/Adobe updaters, link tracking, compatibility assistant) switched from Automatic to Manual so they start only when needed. Nothing is disabled and every original value is journaled.",
+        "sideEffects":  "None expected. Unlike some tools, Rigwright never touches update, security or Store services.",
+        "services":  [
+                         {
+                             "name":  "MapsBroker",
+                             "startup":  "Manual",
+                             "undo":  "AutomaticDelayedStart"
+                         },
+                         {
+                             "name":  "edgeupdate",
+                             "startup":  "Manual",
+                             "undo":  "AutomaticDelayedStart"
+                         },
+                         {
+                             "name":  "gupdate",
+                             "startup":  "Manual",
+                             "undo":  "AutomaticDelayedStart"
+                         },
+                         {
+                             "name":  "AdobeARMservice",
+                             "startup":  "Manual",
+                             "undo":  "Automatic"
+                         },
+                         {
+                             "name":  "TrkWks",
+                             "startup":  "Manual",
+                             "undo":  "Automatic"
+                         },
+                         {
+                             "name":  "PcaSvc",
+                             "startup":  "Manual",
+                             "undo":  "Automatic"
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "perf.visualEffects",
+        "name":  "Visual effects: best performance (keep smooth fonts)",
+        "category":  "Performance",
+        "risk":  "low",
+        "description":  "Turns off animations, fades, shadows and Aero Peek while keeping font smoothing and thumbnails. Noticeable on older or low-power PCs.",
+        "sideEffects":  "Windows looks flatter. Sign out and back in for every effect to apply.",
+        "restart":  "explorer",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects",
+                             "name":  "VisualFXSetting",
+                             "type":  "DWord",
+                             "value":  3
+                         },
+                         {
+                             "path":  "HKCU\\Control Panel\\Desktop",
+                             "name":  "UserPreferencesMask",
+                             "type":  "Binary",
+                             "value":  "9012038010000000"
+                         },
+                         {
+                             "path":  "HKCU\\Control Panel\\Desktop\\WindowMetrics",
+                             "name":  "MinAnimate",
+                             "type":  "String",
+                             "value":  "0",
+                             "undo":  "1"
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "TaskbarAnimations",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "ListviewAlphaSelect",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "ListviewShadow",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\DWM",
+                             "name":  "EnableAeroPeek",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKCU\\Control Panel\\Desktop",
+                             "name":  "FontSmoothing",
+                             "type":  "String",
+                             "value":  "2"
+                         }
+                     ],
+        "recommended":  false
+    },
+    {
+        "id":  "perf.ultimatePlan",
+        "name":  "Add and activate the Ultimate Performance power plan",
+        "category":  "Performance",
+        "risk":  "low",
+        "description":  "Unlocks the hidden Ultimate Performance plan and makes it active. Best for desktops; on laptops it costs battery life.",
+        "sideEffects":  "Higher idle power use and heat.",
+        "script":  "$p = \"$env:SystemRoot\\System32\\powercfg.exe\"\n$existing = (\u0026 $p /list) | Select-String \u0027Ultimate Performance\u0027\nif (-not $existing) { \u0026 $p /duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 | Out-Null; $existing = (\u0026 $p /list) | Select-String \u0027Ultimate Performance\u0027 }\n$guid = ([regex]::Match(($existing | Select-Object -First 1).Line, \u0027[0-9a-f\\-]{36}\u0027)).Value\nif ($guid) { \u0026 $p /setactive $guid; \"Ultimate Performance active ($guid)\" } else { \u0027This edition does not provide the Ultimate Performance plan.\u0027 }",
+        "undoScript":  "$p = \"$env:SystemRoot\\System32\\powercfg.exe\"\n\u0026 $p /setactive 381b4222-f694-41f0-9685-ff5bb260df2e\nforeach ($l in ((\u0026 $p /list) | Select-String \u0027Ultimate Performance\u0027)) { $g = ([regex]::Match($l.Line, \u0027[0-9a-f\\-]{36}\u0027)).Value; if ($g) { \u0026 $p /delete $g } }\n\u0027Switched back to Balanced and removed Ultimate Performance.\u0027",
+        "detect":  "[bool]((\u0026 \"$env:SystemRoot\\System32\\powercfg.exe\" /getactivescheme) -match \"Ultimate Performance\")",
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "power.neverSleep",
+        "name":  "Never sleep or turn off the display (all power plans)",
+        "category":  "Power",
+        "risk":  "low",
+        "description":  "Sets display-off, sleep, hibernate, disk-off, lock-screen display-off and unattended-sleep timeouts to Never on plugged-in and battery, for every power plan.",
+        "sideEffects":  "Laptops on battery will drain faster. Closing the lid or pressing the power button still follows their own settings.",
+        "script":  "$p = \"$env:SystemRoot\\System32\\powercfg.exe\"\n$plans = [regex]::Matches(((\u0026 $p /list) -join \"`n\"), \u0027[0-9a-f]{8}-[0-9a-f\\-]{27}\u0027) | ForEach-Object { $_.Value } | Select-Object -Unique\nforeach ($g in $plans) {\n  foreach ($s in @(@(\u0027SUB_VIDEO\u0027,\u0027VIDEOIDLE\u0027),@(\u0027SUB_VIDEO\u0027,\u0027VIDEOCONLOCK\u0027),@(\u0027SUB_SLEEP\u0027,\u0027STANDBYIDLE\u0027),@(\u0027SUB_SLEEP\u0027,\u0027HIBERNATEIDLE\u0027),@(\u0027SUB_SLEEP\u0027,\u0027UNATTENDSLEEP\u0027),@(\u0027SUB_DISK\u0027,\u0027DISKIDLE\u0027))) {\n    \u0026 $p /setacvalueindex $g $s[0] $s[1] 0 2\u003e$null; \u0026 $p /setdcvalueindex $g $s[0] $s[1] 0 2\u003e$null\n  }\n}\n\u0026 $p /setactive SCHEME_CURRENT\n\"Updated $(@($plans).Count) power plan(s).\"",
+        "undoScript":  "$p = \"$env:SystemRoot\\System32\\powercfg.exe\"\n\u0026 $p /change monitor-timeout-ac 10; \u0026 $p /change monitor-timeout-dc 5\n\u0026 $p /change standby-timeout-ac 30; \u0026 $p /change standby-timeout-dc 15\n\u0026 $p /change disk-timeout-ac 20; \u0026 $p /change disk-timeout-dc 10\n\u0027Restored Windows default timeouts on the active plan (display 10/5 min, sleep 30/15 min).\u0027",
+        "detect":  "((\u0026 \"$env:SystemRoot\\System32\\powercfg.exe\" /query SCHEME_CURRENT SUB_SLEEP STANDBYIDLE) -match \"Current AC Power Setting Index: 0x00000000\").Count -gt 0 -and ((\u0026 \"$env:SystemRoot\\System32\\powercfg.exe\" /query SCHEME_CURRENT SUB_VIDEO VIDEOIDLE) -match \"Current AC Power Setting Index: 0x00000000\").Count -gt 0",
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "power.hibernateOff",
+        "name":  "Disable hibernation",
+        "category":  "Power",
+        "risk":  "medium",
+        "description":  "Turns hibernation off and deletes hiberfil.sys, freeing disk space equal to a large part of your RAM.",
+        "sideEffects":  "Also disables Fast Startup. Laptops can no longer hibernate on low battery.",
+        "script":  "\u0026 \"$env:SystemRoot\\System32\\powercfg.exe\" /hibernate off; \"Hibernation disabled\"",
+        "undoScript":  "\u0026 \"$env:SystemRoot\\System32\\powercfg.exe\" /hibernate on; \"Hibernation enabled\"",
+        "detect":  "(Get-ItemProperty \"HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Power\" -ErrorAction SilentlyContinue).HibernateEnabled -eq 0",
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "perf.backgroundApps",
+        "name":  "Stop Store apps running in the background",
+        "category":  "Performance",
+        "risk":  "low",
+        "description":  "Prevents Microsoft Store apps from running in the background when you are not using them.",
+        "sideEffects":  "Store apps (Mail, Phone Link, some chat apps) may not show notifications until opened.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications",
+                             "name":  "GlobalUserDisabled",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "perf.startupDelay",
+        "name":  "Remove startup app delay",
+        "category":  "Performance",
+        "risk":  "low",
+        "description":  "Windows waits about 10 seconds after sign-in before launching startup apps. This removes that artificial delay.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Serialize",
+                             "name":  "StartupDelayInMSec",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "perf.searchIndexing",
+        "name":  "Disable Windows Search indexing",
+        "category":  "Performance",
+        "risk":  "medium",
+        "description":  "Stops the search indexer service. Reduces background disk and CPU use on slow drives.",
+        "sideEffects":  "Start/File Explorer search becomes slower and Outlook desktop search may stop working.",
+        "services":  [
+                         {
+                             "name":  "WSearch",
+                             "startup":  "Disabled",
+                             "undo":  "AutomaticDelayedStart"
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "perf.deliveryOptimization",
+        "name":  "Download updates from Microsoft only (no P2P)",
+        "category":  "Performance",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Stops your PC uploading Windows updates to other PCs on the internet (Delivery Optimization set to HTTP only).",
+        "registry":  [
+                         {
+                             "path":  "HKU\\S-1-5-20\\Software\\Microsoft\\Windows\\CurrentVersion\\DeliveryOptimization\\Settings",
+                             "name":  "DownloadMode",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "perf.storageSense",
+        "name":  "Enable Storage Sense",
+        "category":  "Performance",
+        "risk":  "low",
+        "description":  "Lets Windows automatically clear temporary files and empty the Recycle Bin of old items when space runs low.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\StorageSense\\Parameters\\StoragePolicy",
+                             "name":  "01",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "perf.folderDiscovery",
+        "name":  "Disable automatic folder type discovery",
+        "category":  "Performance",
+        "risk":  "low",
+        "description":  "Stops Explorer guessing the folder type (Pictures, Music...) on every open, which makes large folders load much faster.",
+        "restart":  "explorer",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\Bags\\AllFolders\\Shell",
+                             "name":  "FolderType",
+                             "type":  "String",
+                             "value":  "NotSpecified"
+                         }
+                     ],
+        "recommended":  false
+    },
+    {
+        "id":  "gaming.gameMode",
+        "name":  "Enable Game Mode",
+        "category":  "Gaming",
+        "risk":  "low",
+        "description":  "Lets Windows prioritize the game you are playing and pause Windows Update installs while you play.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\GameBar",
+                             "name":  "AutoGameModeEnabled",
+                             "type":  "DWord",
+                             "value":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\GameBar",
+                             "name":  "AllowAutoGameMode",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "gaming.gameDvr",
+        "name":  "Disable background game recording (Game DVR)",
+        "category":  "Gaming",
+        "risk":  "low",
+        "description":  "Turns off background capture, which costs a few FPS on weaker GPUs.",
+        "sideEffects":  "Xbox Game Bar \"Record that\" and background clips stop working. The Game Bar overlay itself still opens.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\System\\GameConfigStore",
+                             "name":  "GameDVR_Enabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\GameDVR",
+                             "name":  "AppCaptureEnabled",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "gaming.hags",
+        "name":  "Enable hardware-accelerated GPU scheduling",
+        "category":  "Gaming",
+        "risk":  "low",
+        "description":  "Lets the GPU manage its own memory scheduling. Usually lowers latency on modern NVIDIA/AMD GPUs; required for DLSS Frame Generation.",
+        "sideEffects":  "Rarely causes stutter with old drivers - undo if so.",
+        "restart":  "reboot",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers",
+                             "name":  "HwSchMode",
+                             "type":  "DWord",
+                             "value":  2
+                         }
+                     ],
+        "recommended":  false
+    },
+    {
+        "id":  "gaming.windowedOpt",
+        "name":  "Enable optimizations for windowed games",
+        "category":  "Gaming",
+        "risk":  "low",
+        "description":  "Uses the modern flip presentation model for DirectX 10/11 games running windowed or borderless, lowering latency and enabling Auto HDR/VRR.",
+        "minBuild":  22000,
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\DirectX\\UserGpuPreferences",
+                             "name":  "DirectXUserGlobalSettings",
+                             "type":  "String",
+                             "value":  "SwapEffectUpgradeEnable=1;"
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "gaming.mouseAccel",
+        "name":  "Disable mouse acceleration",
+        "category":  "Gaming",
+        "risk":  "low",
+        "description":  "Turns off \"Enhance pointer precision\" so mouse movement is 1:1 - preferred for aiming in games.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Control Panel\\Mouse",
+                             "name":  "MouseSpeed",
+                             "type":  "String",
+                             "value":  "0",
+                             "undo":  "1"
+                         },
+                         {
+                             "path":  "HKCU\\Control Panel\\Mouse",
+                             "name":  "MouseThreshold1",
+                             "type":  "String",
+                             "value":  "0",
+                             "undo":  "6"
+                         },
+                         {
+                             "path":  "HKCU\\Control Panel\\Mouse",
+                             "name":  "MouseThreshold2",
+                             "type":  "String",
+                             "value":  "0",
+                             "undo":  "10"
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "gaming.networkThrottling",
+        "name":  "Disable multimedia network throttling",
+        "category":  "Gaming",
+        "risk":  "low",
+        "description":  "Removes the network throttling Windows applies while audio/video plays. Benefit is small and hardware-dependent; included because it is harmless.",
+        "restart":  "reboot",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+                             "name":  "NetworkThrottlingIndex",
+                             "type":  "DWord",
+                             "value":  4294967295,
+                             "undo":  10
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+                             "name":  "SystemResponsiveness",
+                             "type":  "DWord",
+                             "value":  10,
+                             "undo":  20
+                         }
+                     ],
+        "recommended":  false
+    },
+    {
+        "id":  "ui.darkMode",
+        "name":  "Dark mode",
+        "category":  "Appearance",
+        "risk":  "low",
+        "description":  "Switches Windows and apps to the dark theme.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+                             "name":  "AppsUseLightTheme",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+                             "name":  "SystemUsesLightTheme",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "ui.fileExtensions",
+        "name":  "Show file extensions",
+        "category":  "Explorer",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Shows \".exe\", \".pdf\" and so on. Important for spotting disguised malware like \"invoice.pdf.exe\".",
+        "restart":  "explorer",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "HideFileExt",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         }
+                     ]
+    },
+    {
+        "id":  "ui.hiddenFiles",
+        "name":  "Show hidden files",
+        "category":  "Explorer",
+        "risk":  "low",
+        "description":  "Shows hidden files and folders such as AppData.",
+        "restart":  "explorer",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "Hidden",
+                             "type":  "DWord",
+                             "value":  1,
+                             "undo":  2
+                         }
+                     ],
+        "recommended":  false
+    },
+    {
+        "id":  "ui.thisPC",
+        "name":  "Open File Explorer to This PC",
+        "category":  "Explorer",
+        "risk":  "low",
+        "description":  "File Explorer opens to your drives instead of Home/Quick access.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "LaunchTo",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "ui.hideHomeGallery",
+        "name":  "Hide Home and Gallery in Explorer",
+        "category":  "Explorer",
+        "risk":  "low",
+        "description":  "Removes the Home and Gallery entries from the File Explorer navigation pane (per user, fully reversible).",
+        "minBuild":  22621,
+        "restart":  "explorer",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Classes\\CLSID\\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}",
+                             "name":  "System.IsPinnedToNameSpaceTree",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Classes\\CLSID\\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}",
+                             "name":  "System.IsPinnedToNameSpaceTree",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ],
+        "recommended":  false
+    },
+    {
+        "id":  "ui.classicMenu",
+        "name":  "Classic right-click menu",
+        "category":  "Explorer",
+        "risk":  "low",
+        "description":  "Restores the full Windows 10 style context menu, so you do not need \"Show more options\".",
+        "minBuild":  22000,
+        "restart":  "explorer",
+        "script":  "$k = \u0027HKCU:\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32\u0027\nNew-Item -Path $k -Force | Out-Null\nSet-ItemProperty -Path $k -Name \u0027(default)\u0027 -Value \u0027\u0027\n\u0027Classic context menu enabled\u0027",
+        "undoScript":  "Remove-Item -Path \u0027HKCU:\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\u0027 -Recurse -Force -ErrorAction SilentlyContinue; \u0027Windows 11 context menu restored\u0027",
+        "detect":  "Test-Path \u0027HKCU:\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32\u0027",
+        "recommended":  false
+    },
+    {
+        "id":  "ui.endTask",
+        "name":  "Add \"End task\" to taskbar right-click",
+        "category":  "Taskbar \u0026 Start",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Right-click any app on the taskbar to force-close it without Task Manager.",
+        "minBuild":  22631,
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\TaskbarDeveloperSettings",
+                             "name":  "TaskbarEndTask",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "ui.taskbarLeft",
+        "name":  "Align taskbar to the left",
+        "category":  "Taskbar \u0026 Start",
+        "risk":  "low",
+        "description":  "Moves the Start button and app icons to the left like Windows 10.",
+        "minBuild":  22000,
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "TaskbarAl",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "ui.hideTaskView",
+        "name":  "Hide Task View button",
+        "category":  "Taskbar \u0026 Start",
+        "risk":  "low",
+        "description":  "Removes the Task View button from the taskbar (Win+Tab still works).",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "ShowTaskViewButton",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "ui.searchIcon",
+        "name":  "Search box: icon only",
+        "category":  "Taskbar \u0026 Start",
+        "risk":  "low",
+        "description":  "Replaces the wide taskbar search box with a compact icon.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search",
+                             "name":  "SearchboxTaskbarMode",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "ui.widgets",
+        "name":  "Disable Widgets (news and weather)",
+        "category":  "Taskbar \u0026 Start",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Removes the Widgets board and its taskbar button, which loads news feeds in the background.",
+        "restart":  "explorer",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Dsh",
+                             "name":  "AllowNewsAndInterests",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ]
+    },
+    {
+        "id":  "ui.startRecommendations",
+        "name":  "Remove Start menu promotions and account nags",
+        "category":  "Taskbar \u0026 Start",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Turns off \"Recommended\" tips/app promotions and Microsoft account notifications in Start. Your recent files stay.",
+        "minBuild":  22000,
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "Start_IrisRecommendations",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "Start_AccountNotifications",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  1
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "ui.secondsClock",
+        "name":  "Show seconds in the taskbar clock",
+        "category":  "Taskbar \u0026 Start",
+        "risk":  "low",
+        "description":  "Adds seconds to the clock in the system tray.",
+        "minBuild":  22621,
+        "restart":  "explorer",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                             "name":  "ShowSecondsInSystemClock",
+                             "type":  "DWord",
+                             "value":  1,
+                             "undo":  0
+                         }
+                     ],
+        "recommended":  false
+    },
+    {
+        "id":  "ui.verboseStatus",
+        "name":  "Verbose sign-in / shutdown messages",
+        "category":  "System",
+        "risk":  "low",
+        "description":  "Shows what Windows is doing during startup, sign-in and shutdown - helpful when it hangs.",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+                             "name":  "VerboseStatus",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "ui.numlock",
+        "name":  "NumLock on at boot",
+        "category":  "Input",
+        "risk":  "low",
+        "description":  "Turns NumLock on at the sign-in screen.",
+        "registry":  [
+                         {
+                             "path":  "HKU\\.DEFAULT\\Control Panel\\Keyboard",
+                             "name":  "InitialKeyboardIndicators",
+                             "type":  "String",
+                             "value":  "2",
+                             "undo":  "2147483648"
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "ui.stickyKeys",
+        "name":  "Disable the Sticky Keys shortcut prompt",
+        "category":  "Input",
+        "risk":  "low",
+        "description":  "Stops the Sticky Keys dialog popping up when you press Shift five times (common in games).",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Control Panel\\Accessibility\\StickyKeys",
+                             "name":  "Flags",
+                             "type":  "String",
+                             "value":  "506",
+                             "undo":  "510"
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "sys.longPaths",
+        "name":  "Enable long file paths",
+        "category":  "System",
+        "risk":  "low",
+        "description":  "Allows paths longer than 260 characters - avoids errors with deep node_modules, git repos and archives.",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SYSTEM\\CurrentControlSet\\Control\\FileSystem",
+                             "name":  "LongPathsEnabled",
+                             "type":  "DWord",
+                             "value":  1,
+                             "undo":  0
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "sys.verboseBsod",
+        "name":  "Show details on blue screens",
+        "category":  "System",
+        "risk":  "low",
+        "description":  "Shows the driver and parameters on a blue screen instead of only a sad face.",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SYSTEM\\CurrentControlSet\\Control\\CrashControl",
+                             "name":  "DisplayParameters",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "sys.utcClock",
+        "name":  "Hardware clock in UTC (dual boot with Linux)",
+        "category":  "System",
+        "risk":  "low",
+        "description":  "Stops the clock jumping by hours when you dual boot Windows and Linux.",
+        "sideEffects":  "Only use this if you dual boot.",
+        "restart":  "reboot",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SYSTEM\\CurrentControlSet\\Control\\TimeZoneInformation",
+                             "name":  "RealTimeIsUniversal",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "recommended":  false
+    },
+    {
+        "id":  "sys.registryBackup",
+        "name":  "Daily automatic registry backup",
+        "category":  "System",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Re-enables the RegIdleBackup task Microsoft turned off in Windows 10 1803, so C:\\Windows\\System32\\config\\RegBack is kept current.",
+        "restart":  "reboot",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Configuration Manager",
+                             "name":  "EnablePeriodicBackup",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ]
+    },
+    {
+        "id":  "sys.preventAutoEncryption",
+        "name":  "Prevent automatic BitLocker device encryption",
+        "category":  "System",
+        "risk":  "medium",
+        "description":  "Stops Windows silently encrypting the drive on setup/sign-in with a Microsoft account. Does NOT decrypt an already-encrypted drive.",
+        "sideEffects":  "Your data is not encrypted if the PC is stolen. Turn BitLocker on manually if you want encryption with a recovery key you control.",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SYSTEM\\CurrentControlSet\\Control\\BitLocker",
+                             "name":  "PreventDeviceEncryption",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "sys.f8Menu",
+        "name":  "Legacy F8 boot recovery menu",
+        "category":  "System",
+        "risk":  "medium",
+        "description":  "Lets you press F8 at boot to reach Safe Mode and recovery options.",
+        "sideEffects":  "Adds a short delay at boot.",
+        "script":  "\u0026 \"$env:SystemRoot\\System32\\bcdedit.exe\" /set \"{current}\" bootmenupolicy legacy",
+        "undoScript":  "\u0026 \"$env:SystemRoot\\System32\\bcdedit.exe\" /set \"{current}\" bootmenupolicy standard",
+        "detect":  "[bool]((\u0026 \"$env:SystemRoot\\System32\\bcdedit.exe\" /enum \"{current}\") -match \"bootmenupolicy\\s+Legacy\")",
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "sec.pua",
+        "name":  "Block potentially unwanted apps (Defender PUA)",
+        "category":  "Security",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Makes Microsoft Defender block adware, bundleware and crypto miners, not just viruses.",
+        "script":  "Set-MpPreference -PUAProtection Enabled; \"PUA protection enabled\"",
+        "undoScript":  "Set-MpPreference -PUAProtection Disabled; \"PUA protection disabled\"",
+        "detect":  "(Get-MpPreference).PUAProtection -eq 1",
+        "restart":  "none"
+    },
+    {
+        "id":  "sec.autorun",
+        "name":  "Disable AutoRun/AutoPlay for all drives",
+        "category":  "Security",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Stops USB sticks and discs running anything automatically when inserted.",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+                             "name":  "NoDriveTypeAutoRun",
+                             "type":  "DWord",
+                             "value":  255
+                         }
+                     ],
+        "restart":  "none"
+    },
+    {
+        "id":  "sec.smb1Off",
+        "name":  "Disable SMBv1 (insecure file sharing protocol)",
+        "category":  "Security",
+        "risk":  "low",
+        "recommended":  true,
+        "description":  "Turns off the 1980s SMB1 protocol abused by WannaCry. Only very old NAS devices need it.",
+        "restart":  "reboot",
+        "script":  "Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -NoRestart -ErrorAction SilentlyContinue | Out-Null; Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force; \"SMB1 disabled\"",
+        "undoScript":  "Enable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -All -NoRestart | Out-Null; \"SMB1 re-enabled\"",
+        "detect":  "-not (Get-SmbServerConfiguration).EnableSMB1Protocol"
+    },
+    {
+        "id":  "net.preferIPv4",
+        "name":  "Prefer IPv4 over IPv6",
+        "category":  "Network",
+        "risk":  "low",
+        "description":  "Keeps IPv6 enabled but makes Windows try IPv4 first. Fixes slow connections on networks with broken IPv6. (Safer than disabling IPv6, which breaks some VPNs.)",
+        "restart":  "reboot",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip6\\Parameters",
+                             "name":  "DisabledComponents",
+                             "type":  "DWord",
+                             "value":  32
+                         }
+                     ],
+        "recommended":  false
+    },
+    {
+        "id":  "wu.securityFocused",
+        "name":  "Updates: delay feature updates 1 year, quality 4 days",
+        "category":  "Windows Update",
+        "risk":  "low",
+        "description":  "Still installs security fixes promptly but holds big feature upgrades for 365 days so others find the bugs first. Windows Update and its repair service stay fully enabled.",
+        "sideEffects":  "Pro/Enterprise/Education only - Home ignores deferral policies. Settings shows \"Some settings are managed by your organization\".",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate",
+                             "name":  "DeferFeatureUpdates",
+                             "type":  "DWord",
+                             "value":  1
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate",
+                             "name":  "DeferFeatureUpdatesPeriodInDays",
+                             "type":  "DWord",
+                             "value":  365
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate",
+                             "name":  "DeferQualityUpdates",
+                             "type":  "DWord",
+                             "value":  1
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate",
+                             "name":  "DeferQualityUpdatesPeriodInDays",
+                             "type":  "DWord",
+                             "value":  4
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "wu.stayOnVersion",
+        "name":  "Stay on your current Windows version",
+        "category":  "Windows Update",
+        "risk":  "low",
+        "description":  "Pins this PC to its current version (e.g. 24H2) - monthly security updates continue, but no feature upgrade until you undo this.",
+        "sideEffects":  "Remember to undo before your version reaches end of support. Settings shows \"managed by your organization\".",
+        "policy":  true,
+        "script":  "$cv = Get-ItemProperty \u0027HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\u0027\n$k = \u0027HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\u0027\nNew-Item $k -Force | Out-Null\n$prod = \u0027Windows 10\u0027; if ([int]$cv.CurrentBuild -ge 22000) { $prod = \u0027Windows 11\u0027 }\nSet-ItemProperty $k -Name TargetReleaseVersion -Value 1 -Type DWord\nSet-ItemProperty $k -Name TargetReleaseVersionInfo -Value $cv.DisplayVersion -Type String\nSet-ItemProperty $k -Name ProductVersion -Value $prod -Type String\n\"Pinned to $prod $($cv.DisplayVersion)\"",
+        "undoScript":  "$k = \u0027HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\u0027\nforeach ($n in \u0027TargetReleaseVersion\u0027,\u0027TargetReleaseVersionInfo\u0027,\u0027ProductVersion\u0027) { Remove-ItemProperty $k -Name $n -ErrorAction SilentlyContinue }\n\u0027Version pin removed\u0027",
+        "detect":  "(Get-ItemProperty \u0027HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\u0027 -ErrorAction SilentlyContinue).TargetReleaseVersion -eq 1",
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "wu.noDrivers",
+        "name":  "Do not install drivers through Windows Update",
+        "category":  "Windows Update",
+        "risk":  "medium",
+        "description":  "Stops Windows Update replacing your GPU/chipset drivers with older generic ones.",
+        "sideEffects":  "You must update drivers yourself (vendor tools or Device Manager).",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate",
+                             "name":  "ExcludeWUDriversInQualityUpdate",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "wu.noAutoRestart",
+        "name":  "No automatic restart while you are signed in",
+        "category":  "Windows Update",
+        "risk":  "low",
+        "description":  "Windows waits for you to restart instead of rebooting while you are signed in.",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU",
+                             "name":  "NoAutoRebootWithLoggedOnUsers",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "wu.pause",
+        "name":  "Pause updates for 5 weeks",
+        "category":  "Windows Update",
+        "risk":  "low",
+        "description":  "The same as Settings \u003e Windows Update \u003e Pause, for the maximum 35 days. Undo resumes updates.",
+        "script":  "$k = \u0027HKLM:\\SOFTWARE\\Microsoft\\WindowsUpdate\\UX\\Settings\u0027\n$now = (Get-Date).ToUniversalTime(); $end = $now.AddDays(35)\n$f = \u0027yyyy-MM-ddTHH:mm:ssZ\u0027\nNew-Item $k -Force | Out-Null\nforeach ($n in \u0027PauseFeatureUpdatesStartTime\u0027,\u0027PauseQualityUpdatesStartTime\u0027,\u0027PauseUpdatesStartTime\u0027) { Set-ItemProperty $k -Name $n -Value $now.ToString($f) }\nforeach ($n in \u0027PauseFeatureUpdatesEndTime\u0027,\u0027PauseQualityUpdatesEndTime\u0027,\u0027PauseUpdatesExpiryTime\u0027) { Set-ItemProperty $k -Name $n -Value $end.ToString($f) }\n\"Updates paused until $($end.ToLocalTime())\"",
+        "undoScript":  "$k = \u0027HKLM:\\SOFTWARE\\Microsoft\\WindowsUpdate\\UX\\Settings\u0027\nforeach ($n in \u0027PauseFeatureUpdatesStartTime\u0027,\u0027PauseQualityUpdatesStartTime\u0027,\u0027PauseUpdatesStartTime\u0027,\u0027PauseFeatureUpdatesEndTime\u0027,\u0027PauseQualityUpdatesEndTime\u0027,\u0027PauseUpdatesExpiryTime\u0027) { Remove-ItemProperty $k -Name $n -ErrorAction SilentlyContinue }\n\u0027Updates resumed\u0027",
+        "detect":  "$v = (Get-ItemProperty \u0027HKLM:\\SOFTWARE\\Microsoft\\WindowsUpdate\\UX\\Settings\u0027 -ErrorAction SilentlyContinue).PauseUpdatesExpiryTime; [bool]($v -and ([datetime]$v) -gt (Get-Date))",
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "edge.debloat",
+        "name":  "Edge: remove shopping, rewards, sidebar and tracking",
+        "category":  "Apps \u0026 Browsers",
+        "risk":  "low",
+        "description":  "Turns off Edge shopping assistant, Rewards, sidebar, startup boost, background running, personalized news feed and diagnostic data.",
+        "sideEffects":  "Edge shows \"Your browser is managed by your organization\".",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge",
+                             "name":  "EdgeShoppingAssistantEnabled",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge",
+                             "name":  "ShowMicrosoftRewards",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge",
+                             "name":  "HubsSidebarEnabled",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge",
+                             "name":  "StartupBoostEnabled",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge",
+                             "name":  "BackgroundModeEnabled",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge",
+                             "name":  "PersonalizationReportingEnabled",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge",
+                             "name":  "ShowRecommendationsEnabled",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge",
+                             "name":  "DiagnosticData",
+                             "type":  "DWord",
+                             "value":  0
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge",
+                             "name":  "SpotlightExperiencesAndRecommendationsEnabled",
+                             "type":  "DWord",
+                             "value":  0
+                         }
+                     ],
+        "restart":  "none",
+        "recommended":  false
+    },
+    {
+        "id":  "apps.onedrive",
+        "name":  "Uninstall OneDrive",
+        "category":  "Apps \u0026 Browsers",
+        "risk":  "medium",
+        "description":  "Uninstalls the OneDrive client. Your files in the cloud are not deleted.",
+        "sideEffects":  "Make sure everything is synced first. Files that existed \"online-only\" are no longer reachable from this PC. If Desktop/Documents were redirected to OneDrive, move them back first.",
+        "script":  "Get-Process OneDrive -ErrorAction SilentlyContinue | Stop-Process -Force\n$wg = Get-RwWinget\nif ($wg) { Invoke-RwNative $wg \u0027uninstall --id Microsoft.OneDrive --exact --silent --accept-source-agreements --disable-interactivity\u0027 | Out-Null }\n$setup = \"$env:SystemRoot\\System32\\OneDriveSetup.exe\"; if (-not (Test-Path $setup)) { $setup = \"$env:SystemRoot\\SysWOW64\\OneDriveSetup.exe\" }\nif (Test-Path $setup) { Start-Process $setup \u0027/uninstall\u0027 -Wait }\n\u0027OneDrive uninstalled\u0027",
+        "undoScript":  "$wg = Get-RwWinget\nif ($wg) { Invoke-RwNative $wg \u0027install --id Microsoft.OneDrive --exact --silent --accept-package-agreements --accept-source-agreements --disable-interactivity\u0027 | Out-Null }\n\u0027OneDrive reinstalled\u0027",
+        "detect":  "-not (Test-Path \"$env:LOCALAPPDATA\\Microsoft\\OneDrive\\OneDrive.exe\") -and -not (Test-Path \"$env:ProgramFiles\\Microsoft OneDrive\\OneDrive.exe\")",
+        "restart":  "none",
+        "recommended":  false
+    }
+]

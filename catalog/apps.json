@@ -1,0 +1,1019 @@
+[
+    {
+        "id":  "mozilla.firefox",
+        "name":  "Firefox",
+        "winget":  "Mozilla.Firefox",
+        "category":  "Browsers",
+        "choco":  "firefox",
+        "description":  "Fast, private, open-source browser from Mozilla"
+    },
+    {
+        "id":  "google.chrome",
+        "name":  "Google Chrome",
+        "winget":  "Google.Chrome",
+        "category":  "Browsers",
+        "choco":  "googlechrome",
+        "description":  "Google\u0027s web browser"
+    },
+    {
+        "id":  "brave.brave",
+        "name":  "Brave",
+        "winget":  "Brave.Brave",
+        "category":  "Browsers",
+        "choco":  "brave",
+        "description":  "Chromium browser with built-in ad and tracker blocking"
+    },
+    {
+        "id":  "vivaldi.vivaldi",
+        "name":  "Vivaldi",
+        "winget":  "Vivaldi.Vivaldi",
+        "category":  "Browsers",
+        "choco":  "vivaldi",
+        "description":  "Highly customizable Chromium browser"
+    },
+    {
+        "id":  "opera.opera",
+        "name":  "Opera",
+        "winget":  "Opera.Opera",
+        "category":  "Browsers",
+        "choco":  "opera",
+        "description":  "Chromium browser with free VPN and sidebar"
+    },
+    {
+        "id":  "librewolf.librewolf",
+        "name":  "LibreWolf",
+        "winget":  "LibreWolf.LibreWolf",
+        "category":  "Browsers",
+        "choco":  "librewolf",
+        "description":  "Privacy-hardened Firefox fork"
+    },
+    {
+        "id":  "waterfox.waterfox",
+        "name":  "Waterfox",
+        "winget":  "Waterfox.Waterfox",
+        "category":  "Browsers",
+        "choco":  "waterfox",
+        "description":  "Privacy-focused Firefox fork"
+    },
+    {
+        "id":  "zen-team.zen-browser",
+        "name":  "Zen Browser",
+        "winget":  "Zen-Team.Zen-Browser",
+        "category":  "Browsers",
+        "choco":  "",
+        "description":  "Calm, vertical-tab Firefox-based browser"
+    },
+    {
+        "id":  "alex313031.thorium",
+        "name":  "Thorium",
+        "winget":  "Alex313031.Thorium",
+        "category":  "Browsers",
+        "choco":  "",
+        "description":  "Performance-optimized Chromium build"
+    },
+    {
+        "id":  "discord.discord",
+        "name":  "Discord",
+        "winget":  "Discord.Discord",
+        "category":  "Communication",
+        "choco":  "discord",
+        "description":  "Voice, video and text chat"
+    },
+    {
+        "id":  "slacktechnologies.slack",
+        "name":  "Slack",
+        "winget":  "SlackTechnologies.Slack",
+        "category":  "Communication",
+        "choco":  "slack",
+        "description":  "Team messaging"
+    },
+    {
+        "id":  "zoom.zoom",
+        "name":  "Zoom",
+        "winget":  "Zoom.Zoom",
+        "category":  "Communication",
+        "choco":  "zoom",
+        "description":  "Video meetings"
+    },
+    {
+        "id":  "microsoft.teams",
+        "name":  "Microsoft Teams",
+        "winget":  "Microsoft.Teams",
+        "category":  "Communication",
+        "choco":  "microsoft-teams-new-bootstrapper",
+        "description":  "Microsoft\u0027s chat and meetings app"
+    },
+    {
+        "id":  "telegram.telegramdesktop",
+        "name":  "Telegram",
+        "winget":  "Telegram.TelegramDesktop",
+        "category":  "Communication",
+        "choco":  "telegram",
+        "description":  "Cloud-based messenger"
+    },
+    {
+        "id":  "openwhispersystems.signal",
+        "name":  "Signal",
+        "winget":  "OpenWhisperSystems.Signal",
+        "category":  "Communication",
+        "choco":  "signal",
+        "description":  "End-to-end encrypted messenger"
+    },
+    {
+        "id":  "element.element",
+        "name":  "Element",
+        "winget":  "Element.Element",
+        "category":  "Communication",
+        "choco":  "element-desktop",
+        "description":  "Matrix chat client"
+    },
+    {
+        "id":  "mozilla.thunderbird",
+        "name":  "Thunderbird",
+        "winget":  "Mozilla.Thunderbird",
+        "category":  "Communication",
+        "choco":  "thunderbird",
+        "description":  "Email, calendar and contacts"
+    },
+    {
+        "id":  "microsoft.visualstudiocode",
+        "name":  "Visual Studio Code",
+        "winget":  "Microsoft.VisualStudioCode",
+        "category":  "Development",
+        "choco":  "vscode",
+        "description":  "Lightweight code editor"
+    },
+    {
+        "id":  "git.git",
+        "name":  "Git",
+        "winget":  "Git.Git",
+        "category":  "Development",
+        "choco":  "git",
+        "description":  "Distributed version control"
+    },
+    {
+        "id":  "github.githubdesktop",
+        "name":  "GitHub Desktop",
+        "winget":  "GitHub.GitHubDesktop",
+        "category":  "Development",
+        "choco":  "github-desktop",
+        "description":  "Git GUI from GitHub"
+    },
+    {
+        "id":  "github.cli",
+        "name":  "GitHub CLI",
+        "winget":  "GitHub.cli",
+        "category":  "Development",
+        "choco":  "gh",
+        "description":  "GitHub on the command line"
+    },
+    {
+        "id":  "openjs.nodejs.lts",
+        "name":  "Node.js LTS",
+        "winget":  "OpenJS.NodeJS.LTS",
+        "category":  "Development",
+        "choco":  "nodejs-lts",
+        "description":  "JavaScript runtime (long-term support)"
+    },
+    {
+        "id":  "python.python.3.13",
+        "name":  "Python 3.13",
+        "winget":  "Python.Python.3.13",
+        "category":  "Development",
+        "choco":  "python313",
+        "description":  "Python programming language"
+    },
+    {
+        "id":  "microsoft.windowsterminal",
+        "name":  "Windows Terminal",
+        "winget":  "Microsoft.WindowsTerminal",
+        "category":  "Development",
+        "choco":  "microsoft-windows-terminal",
+        "description":  "Modern tabbed terminal"
+    },
+    {
+        "id":  "microsoft.powershell",
+        "name":  "PowerShell 7",
+        "winget":  "Microsoft.PowerShell",
+        "category":  "Development",
+        "choco":  "powershell-core",
+        "description":  "Cross-platform PowerShell"
+    },
+    {
+        "id":  "docker.dockerdesktop",
+        "name":  "Docker Desktop",
+        "winget":  "Docker.DockerDesktop",
+        "category":  "Development",
+        "choco":  "docker-desktop",
+        "description":  "Containers on Windows"
+    },
+    {
+        "id":  "jetbrains.toolbox",
+        "name":  "JetBrains Toolbox",
+        "winget":  "JetBrains.Toolbox",
+        "category":  "Development",
+        "choco":  "jetbrainstoolbox",
+        "description":  "Install and update JetBrains IDEs"
+    },
+    {
+        "id":  "notepad++.notepad++",
+        "name":  "Notepad++",
+        "winget":  "Notepad++.Notepad++",
+        "category":  "Development",
+        "choco":  "notepadplusplus",
+        "description":  "Fast text and code editor"
+    },
+    {
+        "id":  "microsoft.dotnet.sdk.9",
+        "name":  ".NET 9 SDK",
+        "winget":  "Microsoft.DotNet.SDK.9",
+        "category":  "Development",
+        "choco":  "dotnet-9.0-sdk",
+        "description":  "Build .NET apps"
+    },
+    {
+        "id":  "rustlang.rustup",
+        "name":  "Rustup",
+        "winget":  "Rustlang.Rustup",
+        "category":  "Development",
+        "choco":  "rustup.install",
+        "description":  "Rust toolchain installer"
+    },
+    {
+        "id":  "golang.go",
+        "name":  "Go",
+        "winget":  "GoLang.Go",
+        "category":  "Development",
+        "choco":  "golang",
+        "description":  "Go programming language"
+    },
+    {
+        "id":  "neovim.neovim",
+        "name":  "Neovim",
+        "winget":  "Neovim.Neovim",
+        "category":  "Development",
+        "choco":  "neovim",
+        "description":  "Hyperextensible Vim-based editor"
+    },
+    {
+        "id":  "postman.postman",
+        "name":  "Postman",
+        "winget":  "Postman.Postman",
+        "category":  "Development",
+        "choco":  "postman",
+        "description":  "API client"
+    },
+    {
+        "id":  "microsoft.visualstudio.2022.community",
+        "name":  "Visual Studio 2022 Community",
+        "winget":  "Microsoft.VisualStudio.2022.Community",
+        "category":  "Development",
+        "choco":  "visualstudio2022community",
+        "description":  "Full IDE for .NET and C++"
+    },
+    {
+        "id":  "kitware.cmake",
+        "name":  "CMake",
+        "winget":  "Kitware.CMake",
+        "category":  "Development",
+        "choco":  "cmake",
+        "description":  "Cross-platform build system"
+    },
+    {
+        "id":  "winscp.winscp",
+        "name":  "WinSCP",
+        "winget":  "WinSCP.WinSCP",
+        "category":  "Development",
+        "choco":  "winscp",
+        "description":  "SFTP/FTP client"
+    },
+    {
+        "id":  "putty.putty",
+        "name":  "PuTTY",
+        "winget":  "PuTTY.PuTTY",
+        "category":  "Development",
+        "choco":  "putty",
+        "description":  "SSH and telnet client"
+    },
+    {
+        "id":  "oracle.virtualbox",
+        "name":  "VirtualBox",
+        "winget":  "Oracle.VirtualBox",
+        "category":  "Development",
+        "choco":  "virtualbox",
+        "description":  "Run virtual machines"
+    },
+    {
+        "id":  "ollama.ollama",
+        "name":  "Ollama",
+        "winget":  "Ollama.Ollama",
+        "category":  "AI",
+        "choco":  "ollama",
+        "description":  "Run large language models locally - powers Rigwright\u0027s local AI"
+    },
+    {
+        "id":  "elementlabs.lmstudio",
+        "name":  "LM Studio",
+        "winget":  "ElementLabs.LMStudio",
+        "category":  "AI",
+        "choco":  "",
+        "description":  "Download and chat with local LLMs"
+    },
+    {
+        "id":  "anthropic.claude",
+        "name":  "Claude",
+        "winget":  "Anthropic.Claude",
+        "category":  "AI",
+        "choco":  "",
+        "description":  "Claude desktop app"
+    },
+    {
+        "id":  "videolan.vlc",
+        "name":  "VLC",
+        "winget":  "VideoLAN.VLC",
+        "category":  "Multimedia",
+        "choco":  "vlc",
+        "description":  "Plays almost any video or audio file"
+    },
+    {
+        "id":  "obsproject.obsstudio",
+        "name":  "OBS Studio",
+        "winget":  "OBSProject.OBSStudio",
+        "category":  "Multimedia",
+        "choco":  "obs-studio",
+        "description":  "Screen recording and live streaming"
+    },
+    {
+        "id":  "spotify.spotify",
+        "name":  "Spotify",
+        "winget":  "Spotify.Spotify",
+        "category":  "Multimedia",
+        "choco":  "spotify",
+        "description":  "Music streaming"
+    },
+    {
+        "id":  "audacity.audacity",
+        "name":  "Audacity",
+        "winget":  "Audacity.Audacity",
+        "category":  "Multimedia",
+        "choco":  "audacity",
+        "description":  "Audio editor and recorder"
+    },
+    {
+        "id":  "gimp.gimp.3",
+        "name":  "GIMP",
+        "winget":  "GIMP.GIMP.3",
+        "category":  "Multimedia",
+        "choco":  "gimp",
+        "description":  "Image editor"
+    },
+    {
+        "id":  "kde.krita",
+        "name":  "Krita",
+        "winget":  "KDE.Krita",
+        "category":  "Multimedia",
+        "choco":  "krita",
+        "description":  "Digital painting"
+    },
+    {
+        "id":  "inkscape.inkscape",
+        "name":  "Inkscape",
+        "winget":  "Inkscape.Inkscape",
+        "category":  "Multimedia",
+        "choco":  "inkscape",
+        "description":  "Vector graphics editor"
+    },
+    {
+        "id":  "blenderfoundation.blender",
+        "name":  "Blender",
+        "winget":  "BlenderFoundation.Blender",
+        "category":  "Multimedia",
+        "choco":  "blender",
+        "description":  "3D creation suite"
+    },
+    {
+        "id":  "handbrake.handbrake",
+        "name":  "HandBrake",
+        "winget":  "HandBrake.HandBrake",
+        "category":  "Multimedia",
+        "choco":  "handbrake",
+        "description":  "Video converter"
+    },
+    {
+        "id":  "clsid2.mpc-hc",
+        "name":  "MPC-HC",
+        "winget":  "clsid2.mpc-hc",
+        "category":  "Multimedia",
+        "choco":  "mpc-hc-clsid2",
+        "description":  "Lightweight media player"
+    },
+    {
+        "id":  "kde.kdenlive",
+        "name":  "Kdenlive",
+        "winget":  "KDE.Kdenlive",
+        "category":  "Multimedia",
+        "choco":  "kdenlive",
+        "description":  "Video editor"
+    },
+    {
+        "id":  "meltytech.shotcut",
+        "name":  "Shotcut",
+        "winget":  "Meltytech.Shotcut",
+        "category":  "Multimedia",
+        "choco":  "shotcut",
+        "description":  "Video editor"
+    },
+    {
+        "id":  "sharex.sharex",
+        "name":  "ShareX",
+        "winget":  "ShareX.ShareX",
+        "category":  "Multimedia",
+        "choco":  "sharex",
+        "description":  "Screenshots, screen recording and upload"
+    },
+    {
+        "id":  "greenshot.greenshot",
+        "name":  "Greenshot",
+        "winget":  "Greenshot.Greenshot",
+        "category":  "Multimedia",
+        "choco":  "greenshot",
+        "description":  "Simple screenshot tool"
+    },
+    {
+        "id":  "dotpdn.paintdotnet",
+        "name":  "Paint.NET",
+        "winget":  "dotPDN.PaintDotNet",
+        "category":  "Multimedia",
+        "choco":  "paint.net",
+        "description":  "Easy image editor"
+    },
+    {
+        "id":  "irfanskiljan.irfanview",
+        "name":  "IrfanView",
+        "winget":  "IrfanSkiljan.IrfanView",
+        "category":  "Multimedia",
+        "choco":  "irfanview",
+        "description":  "Fast image viewer"
+    },
+    {
+        "id":  "peterpawlowski.foobar2000",
+        "name":  "foobar2000",
+        "winget":  "PeterPawlowski.foobar2000",
+        "category":  "Multimedia",
+        "choco":  "foobar2000",
+        "description":  "Audio player"
+    },
+    {
+        "id":  "gyan.ffmpeg",
+        "name":  "FFmpeg",
+        "winget":  "Gyan.FFmpeg",
+        "category":  "Multimedia",
+        "choco":  "ffmpeg",
+        "description":  "Command-line audio/video toolkit"
+    },
+    {
+        "id":  "yt-dlp.yt-dlp",
+        "name":  "yt-dlp",
+        "winget":  "yt-dlp.yt-dlp",
+        "category":  "Multimedia",
+        "choco":  "yt-dlp",
+        "description":  "Command-line video downloader"
+    },
+    {
+        "id":  "plex.plex",
+        "name":  "Plex",
+        "winget":  "Plex.Plex",
+        "category":  "Multimedia",
+        "choco":  "plex",
+        "description":  "Media player for Plex servers"
+    },
+    {
+        "id":  "7zip.7zip",
+        "name":  "7-Zip",
+        "winget":  "7zip.7zip",
+        "category":  "Utilities",
+        "choco":  "7zip",
+        "description":  "Archive manager (zip, 7z, rar...)"
+    },
+    {
+        "id":  "voidtools.everything",
+        "name":  "Everything",
+        "winget":  "voidtools.Everything",
+        "category":  "Utilities",
+        "choco":  "everything",
+        "description":  "Instant file name search"
+    },
+    {
+        "id":  "microsoft.powertoys",
+        "name":  "PowerToys",
+        "winget":  "Microsoft.PowerToys",
+        "category":  "Utilities",
+        "choco":  "powertoys",
+        "description":  "Microsoft power-user utilities"
+    },
+    {
+        "id":  "rarlab.winrar",
+        "name":  "WinRAR",
+        "winget":  "RARLab.WinRAR",
+        "category":  "Utilities",
+        "choco":  "winrar",
+        "description":  "Archive manager"
+    },
+    {
+        "id":  "bitwarden.bitwarden",
+        "name":  "Bitwarden",
+        "winget":  "Bitwarden.Bitwarden",
+        "category":  "Utilities",
+        "choco":  "bitwarden",
+        "description":  "Open-source password manager"
+    },
+    {
+        "id":  "keepassxcteam.keepassxc",
+        "name":  "KeePassXC",
+        "winget":  "KeePassXCTeam.KeePassXC",
+        "category":  "Utilities",
+        "choco":  "keepassxc",
+        "description":  "Offline password manager"
+    },
+    {
+        "id":  "cpuid.cpu-z",
+        "name":  "CPU-Z",
+        "winget":  "CPUID.CPU-Z",
+        "category":  "Utilities",
+        "choco":  "cpu-z",
+        "description":  "CPU, memory and motherboard info"
+    },
+    {
+        "id":  "techpowerup.gpu-z",
+        "name":  "GPU-Z",
+        "winget":  "TechPowerUp.GPU-Z",
+        "category":  "Utilities",
+        "choco":  "gpu-z",
+        "description":  "Graphics card info"
+    },
+    {
+        "id":  "crystaldewworld.crystaldiskinfo",
+        "name":  "CrystalDiskInfo",
+        "winget":  "CrystalDewWorld.CrystalDiskInfo",
+        "category":  "Utilities",
+        "choco":  "crystaldiskinfo",
+        "description":  "Drive health (SMART)"
+    },
+    {
+        "id":  "crystaldewworld.crystaldiskmark",
+        "name":  "CrystalDiskMark",
+        "winget":  "CrystalDewWorld.CrystalDiskMark",
+        "category":  "Utilities",
+        "choco":  "crystaldiskmark",
+        "description":  "Drive speed benchmark"
+    },
+    {
+        "id":  "realix.hwinfo",
+        "name":  "HWiNFO",
+        "winget":  "REALiX.HWiNFO",
+        "category":  "Utilities",
+        "choco":  "hwinfo",
+        "description":  "Detailed hardware info and sensors"
+    },
+    {
+        "id":  "windirstat.windirstat",
+        "name":  "WinDirStat",
+        "winget":  "WinDirStat.WinDirStat",
+        "category":  "Utilities",
+        "choco":  "windirstat",
+        "description":  "See what is using disk space"
+    },
+    {
+        "id":  "antibodysoftware.wiztree",
+        "name":  "WizTree",
+        "winget":  "AntibodySoftware.WizTree",
+        "category":  "Utilities",
+        "choco":  "wiztree",
+        "description":  "Very fast disk space analyzer"
+    },
+    {
+        "id":  "rufus.rufus",
+        "name":  "Rufus",
+        "winget":  "Rufus.Rufus",
+        "category":  "Utilities",
+        "choco":  "rufus",
+        "description":  "Create bootable USB drives"
+    },
+    {
+        "id":  "ventoy.ventoy",
+        "name":  "Ventoy",
+        "winget":  "Ventoy.Ventoy",
+        "category":  "Utilities",
+        "choco":  "ventoy",
+        "description":  "Multi-ISO bootable USB"
+    },
+    {
+        "id":  "bleachbit.bleachbit",
+        "name":  "BleachBit",
+        "winget":  "BleachBit.BleachBit",
+        "category":  "Utilities",
+        "choco":  "bleachbit",
+        "description":  "Free disk space and clean traces"
+    },
+    {
+        "id":  "microsoft.sysinternals.autoruns",
+        "name":  "Autoruns",
+        "winget":  "Microsoft.Sysinternals.Autoruns",
+        "category":  "Utilities",
+        "choco":  "autoruns",
+        "description":  "See everything that starts with Windows"
+    },
+    {
+        "id":  "microsoft.sysinternals.processexplorer",
+        "name":  "Process Explorer",
+        "winget":  "Microsoft.Sysinternals.ProcessExplorer",
+        "category":  "Utilities",
+        "choco":  "procexp",
+        "description":  "Advanced Task Manager"
+    },
+    {
+        "id":  "autohotkey.autohotkey",
+        "name":  "AutoHotkey",
+        "winget":  "AutoHotkey.AutoHotkey",
+        "category":  "Utilities",
+        "choco":  "autohotkey",
+        "description":  "Automation and hotkeys"
+    },
+    {
+        "id":  "flow-launcher.flow-launcher",
+        "name":  "Flow Launcher",
+        "winget":  "Flow-Launcher.Flow-Launcher",
+        "category":  "Utilities",
+        "choco":  "flow-launcher",
+        "description":  "Keyboard launcher"
+    },
+    {
+        "id":  "klocman.bulkcrapuninstaller",
+        "name":  "Bulk Crap Uninstaller",
+        "winget":  "Klocman.BulkCrapUninstaller",
+        "category":  "Utilities",
+        "choco":  "bulk-crap-uninstaller",
+        "description":  "Remove many programs and leftovers"
+    },
+    {
+        "id":  "revouninstaller.revouninstaller",
+        "name":  "Revo Uninstaller",
+        "winget":  "RevoUninstaller.RevoUninstaller",
+        "category":  "Utilities",
+        "choco":  "revo-uninstaller",
+        "description":  "Uninstaller with leftover cleanup"
+    },
+    {
+        "id":  "devolutions.unigetui",
+        "name":  "UniGetUI",
+        "winget":  "Devolutions.UniGetUI",
+        "category":  "Utilities",
+        "choco":  "wingetui",
+        "description":  "GUI for winget, scoop, choco, pip, npm"
+    },
+    {
+        "id":  "wagnardsoft.displaydriveruninstaller",
+        "name":  "Display Driver Uninstaller",
+        "winget":  "Wagnardsoft.DisplayDriverUninstaller",
+        "category":  "Utilities",
+        "choco":  "ddu",
+        "description":  "Completely remove GPU drivers"
+    },
+    {
+        "id":  "guru3d.afterburner",
+        "name":  "MSI Afterburner",
+        "winget":  "Guru3D.Afterburner",
+        "category":  "Utilities",
+        "choco":  "msiafterburner",
+        "description":  "GPU overclocking and monitoring"
+    },
+    {
+        "id":  "malwarebytes.malwarebytes",
+        "name":  "Malwarebytes",
+        "winget":  "Malwarebytes.Malwarebytes",
+        "category":  "Utilities",
+        "choco":  "malwarebytes",
+        "description":  "Second-opinion malware scanner"
+    },
+    {
+        "id":  "qbittorrent.qbittorrent",
+        "name":  "qBittorrent",
+        "winget":  "qBittorrent.qBittorrent",
+        "category":  "Utilities",
+        "choco":  "qbittorrent",
+        "description":  "Open-source torrent client"
+    },
+    {
+        "id":  "localsend.localsend",
+        "name":  "LocalSend",
+        "winget":  "LocalSend.LocalSend",
+        "category":  "Utilities",
+        "choco":  "localsend",
+        "description":  "AirDrop-style file sharing on your network"
+    },
+    {
+        "id":  "nilesoft.shell",
+        "name":  "Nilesoft Shell",
+        "winget":  "Nilesoft.Shell",
+        "category":  "Utilities",
+        "choco":  "nilesoft-shell",
+        "description":  "Customizable right-click menu"
+    },
+    {
+        "id":  "teamviewer.teamviewer",
+        "name":  "TeamViewer",
+        "winget":  "TeamViewer.TeamViewer",
+        "category":  "Remote \u0026 Network",
+        "choco":  "teamviewer",
+        "description":  "Remote support"
+    },
+    {
+        "id":  "anydesk.anydesk",
+        "name":  "AnyDesk",
+        "winget":  "AnyDesk.AnyDesk",
+        "category":  "Remote \u0026 Network",
+        "choco":  "anydesk",
+        "description":  "Remote desktop"
+    },
+    {
+        "id":  "tailscale.tailscale",
+        "name":  "Tailscale",
+        "winget":  "Tailscale.Tailscale",
+        "category":  "Remote \u0026 Network",
+        "choco":  "tailscale",
+        "description":  "Zero-config private network (great for Rigwright LAN AI)"
+    },
+    {
+        "id":  "wireguard.wireguard",
+        "name":  "WireGuard",
+        "winget":  "WireGuard.WireGuard",
+        "category":  "Remote \u0026 Network",
+        "choco":  "wireguard",
+        "description":  "Fast modern VPN"
+    },
+    {
+        "id":  "proton.protonvpn",
+        "name":  "Proton VPN",
+        "winget":  "Proton.ProtonVPN",
+        "category":  "Remote \u0026 Network",
+        "choco":  "protonvpn",
+        "description":  "Privacy VPN"
+    },
+    {
+        "id":  "wiresharkfoundation.wireshark",
+        "name":  "Wireshark",
+        "winget":  "WiresharkFoundation.Wireshark",
+        "category":  "Remote \u0026 Network",
+        "choco":  "wireshark",
+        "description":  "Network protocol analyzer"
+    },
+    {
+        "id":  "angryziber.angryipscanner",
+        "name":  "Angry IP Scanner",
+        "winget":  "angryziber.AngryIPScanner",
+        "category":  "Remote \u0026 Network",
+        "choco":  "angryip",
+        "description":  "Find devices on your network"
+    },
+    {
+        "id":  "insecure.nmap",
+        "name":  "Nmap",
+        "winget":  "Insecure.Nmap",
+        "category":  "Remote \u0026 Network",
+        "choco":  "nmap",
+        "description":  "Network scanner"
+    },
+    {
+        "id":  "syncthing.syncthing",
+        "name":  "Syncthing",
+        "winget":  "Syncthing.Syncthing",
+        "category":  "Remote \u0026 Network",
+        "choco":  "syncthing",
+        "description":  "Peer-to-peer folder sync"
+    },
+    {
+        "id":  "thedocumentfoundation.libreoffice",
+        "name":  "LibreOffice",
+        "winget":  "TheDocumentFoundation.LibreOffice",
+        "category":  "Documents",
+        "choco":  "libreoffice-fresh",
+        "description":  "Free office suite"
+    },
+    {
+        "id":  "onlyoffice.desktopeditors",
+        "name":  "ONLYOFFICE",
+        "winget":  "ONLYOFFICE.DesktopEditors",
+        "category":  "Documents",
+        "choco":  "onlyoffice",
+        "description":  "Office suite with strong MS Office compatibility"
+    },
+    {
+        "id":  "obsidian.obsidian",
+        "name":  "Obsidian",
+        "winget":  "Obsidian.Obsidian",
+        "category":  "Documents",
+        "choco":  "obsidian",
+        "description":  "Markdown knowledge base"
+    },
+    {
+        "id":  "notion.notion",
+        "name":  "Notion",
+        "winget":  "Notion.Notion",
+        "category":  "Documents",
+        "choco":  "notion",
+        "description":  "Notes, docs and wikis"
+    },
+    {
+        "id":  "sumatrapdf.sumatrapdf",
+        "name":  "SumatraPDF",
+        "winget":  "SumatraPDF.SumatraPDF",
+        "category":  "Documents",
+        "choco":  "sumatrapdf",
+        "description":  "Tiny fast PDF/ebook reader"
+    },
+    {
+        "id":  "adobe.acrobat.reader.64-bit",
+        "name":  "Adobe Acrobat Reader",
+        "winget":  "Adobe.Acrobat.Reader.64-bit",
+        "category":  "Documents",
+        "choco":  "adobereader",
+        "description":  "PDF reader"
+    },
+    {
+        "id":  "joplin.joplin",
+        "name":  "Joplin",
+        "winget":  "Joplin.Joplin",
+        "category":  "Documents",
+        "choco":  "joplin",
+        "description":  "Open-source note taking"
+    },
+    {
+        "id":  "calibre.calibre",
+        "name":  "calibre",
+        "winget":  "calibre.calibre",
+        "category":  "Documents",
+        "choco":  "calibre",
+        "description":  "E-book manager"
+    },
+    {
+        "id":  "digitalscholar.zotero",
+        "name":  "Zotero",
+        "winget":  "DigitalScholar.Zotero",
+        "category":  "Documents",
+        "choco":  "zotero",
+        "description":  "Research and citation manager"
+    },
+    {
+        "id":  "logseq.logseq",
+        "name":  "Logseq",
+        "winget":  "Logseq.Logseq",
+        "category":  "Documents",
+        "choco":  "logseq",
+        "description":  "Outliner knowledge base"
+    },
+    {
+        "id":  "valve.steam",
+        "name":  "Steam",
+        "winget":  "Valve.Steam",
+        "category":  "Games",
+        "choco":  "steam",
+        "description":  "PC games store and launcher"
+    },
+    {
+        "id":  "epicgames.epicgameslauncher",
+        "name":  "Epic Games Launcher",
+        "winget":  "EpicGames.EpicGamesLauncher",
+        "category":  "Games",
+        "choco":  "epicgameslauncher",
+        "description":  "Epic Games store"
+    },
+    {
+        "id":  "gog.galaxy",
+        "name":  "GOG Galaxy",
+        "winget":  "GOG.Galaxy",
+        "category":  "Games",
+        "choco":  "goggalaxy",
+        "description":  "GOG games launcher"
+    },
+    {
+        "id":  "ubisoft.connect",
+        "name":  "Ubisoft Connect",
+        "winget":  "Ubisoft.Connect",
+        "category":  "Games",
+        "choco":  "ubisoft-connect",
+        "description":  "Ubisoft launcher"
+    },
+    {
+        "id":  "electronicarts.eadesktop",
+        "name":  "EA app",
+        "winget":  "ElectronicArts.EADesktop",
+        "category":  "Games",
+        "choco":  "ea-app",
+        "description":  "EA games launcher"
+    },
+    {
+        "id":  "blizzard.battlenet",
+        "name":  "Battle.net",
+        "winget":  "Blizzard.BattleNet",
+        "category":  "Games",
+        "choco":  "",
+        "description":  "Blizzard launcher",
+        "extraArgs":  "--location \"C:\\Program Files (x86)\\Battle.net\""
+    },
+    {
+        "id":  "prismlauncher.prismlauncher",
+        "name":  "Prism Launcher",
+        "winget":  "PrismLauncher.PrismLauncher",
+        "category":  "Games",
+        "choco":  "prismlauncher",
+        "description":  "Minecraft launcher with mod support"
+    },
+    {
+        "id":  "playnite.playnite",
+        "name":  "Playnite",
+        "winget":  "Playnite.Playnite",
+        "category":  "Games",
+        "choco":  "playnite",
+        "description":  "One library for all game launchers"
+    },
+    {
+        "id":  "heroicgameslauncher.heroicgameslauncher",
+        "name":  "Heroic Games Launcher",
+        "winget":  "HeroicGamesLauncher.HeroicGamesLauncher",
+        "category":  "Games",
+        "choco":  "heroic-games-launcher",
+        "description":  "Open-source Epic/GOG/Amazon launcher"
+    },
+    {
+        "id":  "moonlightgamestreamingproject.moonlight",
+        "name":  "Moonlight",
+        "winget":  "MoonlightGameStreamingProject.Moonlight",
+        "category":  "Games",
+        "choco":  "moonlight-qt",
+        "description":  "Stream games from your PC"
+    },
+    {
+        "id":  "parsec.parsec",
+        "name":  "Parsec",
+        "winget":  "Parsec.Parsec",
+        "category":  "Games",
+        "choco":  "parsec",
+        "description":  "Low-latency remote play"
+    },
+    {
+        "id":  "microsoft.vcredist.2015+.x64",
+        "name":  "VC++ Redistributable x64",
+        "winget":  "Microsoft.VCRedist.2015+.x64",
+        "category":  "Runtimes",
+        "choco":  "vcredist140",
+        "description":  "Required by many apps and games"
+    },
+    {
+        "id":  "microsoft.vcredist.2015+.x86",
+        "name":  "VC++ Redistributable x86",
+        "winget":  "Microsoft.VCRedist.2015+.x86",
+        "category":  "Runtimes",
+        "choco":  "vcredist140",
+        "description":  "32-bit version, needed by older games"
+    },
+    {
+        "id":  "microsoft.dotnet.desktopruntime.8",
+        "name":  ".NET Desktop Runtime 8",
+        "winget":  "Microsoft.DotNet.DesktopRuntime.8",
+        "category":  "Runtimes",
+        "choco":  "dotnet-8.0-desktopruntime",
+        "description":  "Runs .NET 8 desktop apps"
+    },
+    {
+        "id":  "microsoft.dotnet.desktopruntime.9",
+        "name":  ".NET Desktop Runtime 9",
+        "winget":  "Microsoft.DotNet.DesktopRuntime.9",
+        "category":  "Runtimes",
+        "choco":  "dotnet-9.0-desktopruntime",
+        "description":  "Runs .NET 9 desktop apps"
+    },
+    {
+        "id":  "eclipseadoptium.temurin.21.jre",
+        "name":  "Java (Temurin 21)",
+        "winget":  "EclipseAdoptium.Temurin.21.JRE",
+        "category":  "Runtimes",
+        "choco":  "temurin21jre",
+        "description":  "Java runtime"
+    },
+    {
+        "id":  "microsoft.directx",
+        "name":  "DirectX End-User Runtime",
+        "winget":  "Microsoft.DirectX",
+        "category":  "Runtimes",
+        "choco":  "directx",
+        "description":  "Legacy DirectX 9 libraries for older games"
+    },
+    {
+        "id":  "microsoft.edgewebview2runtime",
+        "name":  "WebView2 Runtime",
+        "winget":  "Microsoft.EdgeWebView2Runtime",
+        "category":  "Runtimes",
+        "choco":  "webview2-runtime",
+        "description":  "Needed by many modern apps (and Rigwright Desktop)"
+    }
+]

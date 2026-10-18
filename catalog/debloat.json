@@ -1,0 +1,578 @@
+[
+    {
+        "package":  "Microsoft.BingNews",
+        "name":  "Microsoft News",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9WZDNCRFHVFW"
+    },
+    {
+        "package":  "Microsoft.BingWeather",
+        "name":  "Weather",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9WZDNCRFJ3Q2"
+    },
+    {
+        "package":  "Microsoft.BingSearch",
+        "name":  "Bing Search",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.BingFinance",
+        "name":  "Money",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.BingSports",
+        "name":  "Sports",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.GetHelp",
+        "name":  "Get Help",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "Some troubleshooter links open this app.",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.Getstarted",
+        "name":  "Tips",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.MicrosoftSolitaireCollection",
+        "name":  "Solitaire Collection",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9WZDNCRFHWD2"
+    },
+    {
+        "package":  "Microsoft.People",
+        "name":  "People",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.WindowsFeedbackHub",
+        "name":  "Feedback Hub",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9NBLGGH4R32N"
+    },
+    {
+        "package":  "Microsoft.WindowsMaps",
+        "name":  "Maps",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9WZDNCRDTBVB"
+    },
+    {
+        "package":  "Microsoft.ZuneVideo",
+        "name":  "Films \u0026 TV",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.MicrosoftOfficeHub",
+        "name":  "Microsoft 365 (Office) hub",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9WZDNCRD29V9"
+    },
+    {
+        "package":  "Microsoft.Office.OneNote",
+        "name":  "OneNote for Windows 10",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.SkypeApp",
+        "name":  "Skype",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.Todos",
+        "name":  "Microsoft To Do",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9NBLGGH5R558"
+    },
+    {
+        "package":  "Microsoft.PowerAutomateDesktop",
+        "name":  "Power Automate",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "MicrosoftTeams",
+        "name":  "Teams (personal, old)",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "MSTeams",
+        "name":  "Teams (new)",
+        "category":  "Microsoft",
+        "safe":  false,
+        "note":  "Remove only if you do not use Teams for work or school.",
+        "storeId":  ""
+    },
+    {
+        "package":  "Clipchamp.Clipchamp",
+        "name":  "Clipchamp video editor",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.549981C3F5F10",
+        "name":  "Cortana",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.Copilot",
+        "name":  "Copilot app",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9NHT9RB2F4HD"
+    },
+    {
+        "package":  "Microsoft.Windows.DevHome",
+        "name":  "Dev Home",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.OutlookForWindows",
+        "name":  "Outlook (new)",
+        "category":  "Microsoft",
+        "safe":  false,
+        "note":  "Remove only if you use another mail app.",
+        "storeId":  ""
+    },
+    {
+        "package":  "microsoft.windowscommunicationsapps",
+        "name":  "Mail and Calendar (retired)",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.MixedReality.Portal",
+        "name":  "Mixed Reality Portal",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.3DBuilder",
+        "name":  "3D Builder",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.Microsoft3DViewer",
+        "name":  "3D Viewer",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.MSPaint",
+        "name":  "Paint 3D",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.Print3D",
+        "name":  "Print 3D",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.OneConnect",
+        "name":  "Mobile Plans",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.Wallet",
+        "name":  "Wallet",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.Messaging",
+        "name":  "Messaging",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.MicrosoftJournal",
+        "name":  "Journal",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "MicrosoftCorporationII.MicrosoftFamily",
+        "name":  "Family Safety",
+        "category":  "Microsoft",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "MicrosoftCorporationII.QuickAssist",
+        "name":  "Quick Assist",
+        "category":  "Microsoft",
+        "safe":  false,
+        "note":  "Used for remote help from Microsoft/IT support.",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.YourPhone",
+        "name":  "Phone Link",
+        "category":  "Microsoft",
+        "safe":  false,
+        "note":  "Needed to use your phone from the PC.",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.MicrosoftStickyNotes",
+        "name":  "Sticky Notes",
+        "category":  "Microsoft",
+        "safe":  false,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.WindowsSoundRecorder",
+        "name":  "Sound Recorder",
+        "category":  "Microsoft",
+        "safe":  false,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.WindowsAlarms",
+        "name":  "Clock / Alarms",
+        "category":  "Microsoft",
+        "safe":  false,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.ZuneMusic",
+        "name":  "Media Player",
+        "category":  "Microsoft",
+        "safe":  false,
+        "note":  "This is the default music/video player on Windows 11.",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.WindowsCamera",
+        "name":  "Camera",
+        "category":  "Microsoft",
+        "safe":  false,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.Windows.Photos",
+        "name":  "Photos",
+        "category":  "Microsoft",
+        "safe":  false,
+        "note":  "Default image viewer.",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.GamingApp",
+        "name":  "Xbox app",
+        "category":  "Xbox",
+        "safe":  false,
+        "note":  "Needed for Game Pass.",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.XboxGamingOverlay",
+        "name":  "Xbox Game Bar",
+        "category":  "Xbox",
+        "safe":  false,
+        "note":  "Needed for game recording and some controller features.",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.XboxApp",
+        "name":  "Xbox Console Companion (old)",
+        "category":  "Xbox",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.Xbox.TCUI",
+        "name":  "Xbox TCUI",
+        "category":  "Xbox",
+        "safe":  false,
+        "note":  "Removing breaks sign-in in many Xbox/Game Pass games.",
+        "storeId":  ""
+    },
+    {
+        "package":  "Microsoft.XboxIdentityProvider",
+        "name":  "Xbox Identity Provider",
+        "category":  "Xbox",
+        "safe":  false,
+        "note":  "Removing breaks Xbox sign-in.",
+        "storeId":  ""
+    },
+    {
+        "package":  "*CandyCrush*",
+        "name":  "Candy Crush",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "king.com.*",
+        "name":  "King games",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "SpotifyAB.SpotifyMusic",
+        "name":  "Spotify (preinstalled)",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*Disney*",
+        "name":  "Disney+",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*Facebook*",
+        "name":  "Facebook",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*Instagram*",
+        "name":  "Instagram",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*TikTok*",
+        "name":  "TikTok",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*Netflix*",
+        "name":  "Netflix",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "7EE7776C.LinkedInforWindows",
+        "name":  "LinkedIn",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*Twitter*",
+        "name":  "Twitter / X",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*Duolingo*",
+        "name":  "Duolingo",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*PicsArt*",
+        "name":  "PicsArt",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*AdobePhotoshopExpress*",
+        "name":  "Photoshop Express",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*Amazon*",
+        "name":  "Amazon apps",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*Hulu*",
+        "name":  "Hulu",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*Asphalt*",
+        "name":  "Asphalt",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*RoyalRevolt*",
+        "name":  "Royal Revolt",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*HiddenCity*",
+        "name":  "Hidden City",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "5A894077.McAfeeSecurity",
+        "name":  "McAfee trial",
+        "category":  "Third-party",
+        "safe":  true,
+        "note":  "",
+        "storeId":  ""
+    },
+    {
+        "package":  "*Dolby*",
+        "name":  "Dolby Access",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "May control your laptop speakers - keep if sound changes after removal.",
+        "storeId":  ""
+    },
+    {
+        "package":  "AD2F1837.*",
+        "name":  "HP preinstalled apps",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Some HP apps control hotkeys/battery.",
+        "storeId":  ""
+    },
+    {
+        "package":  "DellInc.*",
+        "name":  "Dell preinstalled apps",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Some Dell apps control power/thermal settings.",
+        "storeId":  ""
+    },
+    {
+        "package":  "E046963F.LenovoCompanion",
+        "name":  "Lenovo Vantage",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Controls battery conservation and firmware updates on Lenovo.",
+        "storeId":  ""
+    },
+    {
+        "package":  "B9ECED6F.*",
+        "name":  "ASUS preinstalled apps",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "MyASUS/Armoury Crate control fans and keyboard lighting.",
+        "storeId":  ""
+    }
+]

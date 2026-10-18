@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Catalog checks
+        shell: powershell
+        run: .\tests\Test-Catalog.ps1
+      - name: Command-safety tests
+        shell: powershell
+        run: .\tests\Test-CommandSafety.ps1
+      - name: Server smoke test
+        shell: powershell
+        run: .\tests\Test-Server.ps1
+      - name: Build desktop shell
+        run: dotnet build desktop/Rigwright.Desktop.csproj -c Release

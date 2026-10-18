@@ -1,0 +1,15 @@
+name: Feature, tweak or app request
+description: Suggest a new feature, tweak or catalog app
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: kind
+    attributes: { label: Type, options: ["Feature", "Tweak", "App for the catalog", "Fix / tool", "AI assistant"] }
+    validations: { required: true }
+  - type: textarea
+    id: desc
+    attributes: { label: Describe it, description: "For tweaks: what it changes, the registry/service details, side effects and a source link. For apps: the exact winget id." }
+    validations: { required: true }
+  - type: textarea
+    id: why
+    attributes: { label: Why is it useful? }

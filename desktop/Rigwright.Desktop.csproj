@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>Rigwright</AssemblyName>
+    <RootNamespace>Rigwright.Desktop</RootNamespace>
+    <ApplicationIcon>rigwright.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Version>1.0.0</Version>
+    <Product>Rigwright</Product>
+    <Company>ResilientMind AI LLC</Company>
+    <Authors>Joseph C McGinty Jr.; ResilientMind AI LLC</Authors>
+    <Copyright>Copyright (c) 2026 Joseph C McGinty Jr. &amp; ResilientMind AI LLC</Copyright>
+    <Description>Rigwright desktop shell - AI-assisted Windows setup, tuning and repair</Description>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <!-- The WebView2 package ships a WPF assembly we do not use -->
+    <NoWarn>$(NoWarn);MSB3277</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4258.31" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="rigwright.ico" />
+  </ItemGroup>
+
+</Project>

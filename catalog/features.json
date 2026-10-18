@@ -1,0 +1,108 @@
+[
+    {
+        "id":  "feat.wsl",
+        "name":  "Windows Subsystem for Linux (WSL)",
+        "description":  "Run Linux distributions natively. After reboot run: wsl --install",
+        "features":  [
+                         "Microsoft-Windows-Subsystem-Linux",
+                         "VirtualMachinePlatform"
+                     ]
+    },
+    {
+        "id":  "feat.hyperv",
+        "name":  "Hyper-V",
+        "description":  "Microsoft virtual machines (Pro/Enterprise/Education).",
+        "features":  [
+                         "Microsoft-Hyper-V-All"
+                     ]
+    },
+    {
+        "id":  "feat.sandbox",
+        "name":  "Windows Sandbox",
+        "description":  "Disposable desktop for testing untrusted apps (Pro and above).",
+        "features":  [
+                         "Containers-DisposableClientVM"
+                     ]
+    },
+    {
+        "id":  "feat.netfx3",
+        "name":  ".NET Framework 3.5",
+        "description":  "Needed by older apps and games.",
+        "features":  [
+                         "NetFx3"
+                     ]
+    },
+    {
+        "id":  "feat.vmp",
+        "name":  "Virtual Machine Platform",
+        "description":  "Needed by WSL2 and some Android/emulator tools.",
+        "features":  [
+                         "VirtualMachinePlatform"
+                     ]
+    },
+    {
+        "id":  "feat.containers",
+        "name":  "Containers",
+        "description":  "Windows containers support.",
+        "features":  [
+                         "Containers"
+                     ]
+    },
+    {
+        "id":  "feat.nfs",
+        "name":  "NFS client",
+        "description":  "Mount NFS shares from Linux servers/NAS.",
+        "features":  [
+                         "ServicesForNFS-ClientOnly",
+                         "ClientForNFS-Infrastructure"
+                     ]
+    },
+    {
+        "id":  "feat.legacyMedia",
+        "name":  "Legacy components (DirectPlay)",
+        "description":  "Required by many games from the 2000s.",
+        "features":  [
+                         "LegacyComponents",
+                         "DirectPlay"
+                     ]
+    },
+    {
+        "id":  "feat.telnet",
+        "name":  "Telnet client",
+        "description":  "Simple TCP testing tool.",
+        "features":  [
+                         "TelnetClient"
+                     ]
+    },
+    {
+        "id":  "feat.smb1",
+        "name":  "SMB 1.0 client (insecure)",
+        "description":  "Only for very old NAS/printers that cannot use SMB2+. Leave off otherwise.",
+        "features":  [
+                         "SMB1Protocol-Client"
+                     ]
+    },
+    {
+        "id":  "feat.sshServer",
+        "name":  "OpenSSH Server",
+        "description":  "Let other machines SSH into this PC. Starts the service and opens the firewall on private networks.",
+        "features":  [
+
+                     ],
+        "capabilities":  [
+                             "OpenSSH.Server~~~~0.0.1.0"
+                         ],
+        "script":  "Set-Service sshd -StartupType Automatic; Start-Service sshd"
+    },
+    {
+        "id":  "feat.sshClient",
+        "name":  "OpenSSH Client",
+        "description":  "ssh / scp commands (installed by default on most PCs).",
+        "features":  [
+
+                     ],
+        "capabilities":  [
+                             "OpenSSH.Client~~~~0.0.1.0"
+                         ]
+    }
+]
