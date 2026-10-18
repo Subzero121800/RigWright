@@ -109,5 +109,11 @@ Remove-Item $tmp -Force
 & $gh api -X PUT "repos/$Repo/private-vulnerability-reporting" *> $null
 if ($LASTEXITCODE) { Write-Host '  private vulnerability reporting: could not enable (enable it under Settings > Code security)' -ForegroundColor Yellow } else { Write-Host '  private vulnerability reporting: enabled' }
 
+# ---------------------------------------------------------------- Actions hardening (public repos)
+& $gh api -X PUT "repos/$Repo/actions/permissions/workflow" -f default_workflow_permissions=read -F can_approve_pull_request_reviews=false *> $null
+if ($LASTEXITCODE) { Write-Host '  Actions token: could not set read-only' -ForegroundColor Yellow } else { Write-Host '  Actions token: read-only, cannot approve pull requests' }
+& $gh api -X PUT "repos/$Repo/actions/permissions/fork-pr-contributor-approval" -f approval_policy=all_external_contributors *> $null
+if ($LASTEXITCODE) { Write-Host '  fork PR workflows: approval policy not set (public repos only)' -ForegroundColor Yellow } else { Write-Host '  fork PR workflows: every outside contributor needs approval before CI runs' }
+
 Write-Host 'Done.' -ForegroundColor Green
 exit 0
