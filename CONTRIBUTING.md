@@ -9,7 +9,7 @@ By participating you agree to follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 ## Maintenance policy
 
 - **Catalog PRs** (apps, tweaks, fixes, debloat entries) are reviewed **weekly**.
-- **Engine, server, AI and security changes** are made or approved by the maintainer only. Please open an issue to discuss them before writing code.
+- **Engine, server, AI and security changes** are made or approved by the maintainer only. Please start a [Discussion](https://github.com/Subzero121800/RigWright/discussions) or open an issue to talk them through before writing code.
 - Security reports follow [SECURITY.md](SECURITY.md) and are handled first.
 - Issues labeled `good first issue` are small catalog additions that make a good first contribution.
 

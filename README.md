@@ -367,7 +367,7 @@ Contributions are welcome. New tweaks and apps are just JSON. Please read [CONTR
 ## Support the project
 
 Rigwright is free and always will be. If it saved you time, you can
-**[support Joseph C McGinty Jr. on Buy Me a Coffee](https://buymeacoffee.com/jcinc)**. Thank you! Questions, ideas or feedback: [connect on LinkedIn](https://www.linkedin.com/in/joseph-mcginty-jr/).
+**[support Joseph C McGinty Jr. on Buy Me a Coffee](https://buymeacoffee.com/jcinc)**. Thank you! Questions, ideas or feedback: [GitHub Discussions](https://github.com/Subzero121800/RigWright/discussions) or [connect on LinkedIn](https://www.linkedin.com/in/joseph-mcginty-jr/).
 
 ## License and credits
 

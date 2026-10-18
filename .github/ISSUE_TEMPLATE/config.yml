@@ -1,5 +1,11 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Ask a question or get help
+    url: https://github.com/Subzero121800/RigWright/discussions/categories/q-a
+    about: Not sure if something is a bug? Ask in Discussions first.
+  - name: Suggest an idea
+    url: https://github.com/Subzero121800/RigWright/discussions/categories/ideas
+    about: Feature ideas and catalog wishes that are not yet concrete enough for an issue.
   - name: Report a security vulnerability
-    url: https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability
+    url: https://github.com/Subzero121800/RigWright/security/advisories/new
     about: Please report vulnerabilities privately (see SECURITY.md).
