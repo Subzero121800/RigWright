@@ -31,7 +31,8 @@ If Windows shows "Windows protected your PC", click **More info → Run anyway**
 ```powershell
 # Option A - get the full app from source with Git (winget installs Git if you don't have it)
 winget install --id Git.Git -e
-git clone https://github.com/Subzero121800/RigWright.git
+cd ~\Downloads                      # any normal folder; not C:\Windows\System32
+git clone --depth 1 https://github.com/Subzero121800/RigWright.git
 cd RigWright
 .\Start-Rigwright.cmd
 
@@ -40,11 +41,13 @@ cd RigWright
 ```
 
 Running from source starts the PowerShell edition in its own app window. `Rigwright.exe` is included in the release zips.
+If the clone stops with `RPC failed; curl 92 HTTP/2 stream ... reset`, run `git config --global http.version HTTP/1.1` once and retry
+(see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)).
 </details>
 
 ---
 
-Rigwright is a free, open-source all-in-one Windows utility in the spirit of Chris Titus Tech's [WinUtil](https://github.com/ChrisTitusTech/winutil). I rebuilt it around the problems users report most with tools like that: undo that doesn't really undo, tweaks that quietly break Windows Update or VPNs, a window that freezes during long jobs, no way to see exactly what will change, and having to trust `irm | iex`.
+Rigwright is a free, open-source all-in-one Windows utility. It was built around the problems people report most with Windows tweak tools: undo that doesn't really undo, tweaks that quietly break Windows Update or VPNs, a window that freezes during long jobs, no way to see exactly what will change, and having to trust `irm | iex`.
 
 On top of that, it adds an **AI assistant**. You describe what you want in plain English ("make this faster for gaming but keep Game Pass working", "my VPN connects but there's no internet") and get a reviewed, checkbox-by-checkbox plan. The assistant can use:
 
@@ -352,7 +355,7 @@ Rigwright/
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): how the pieces fit together
 - [docs/AI.md](docs/AI.md): providers, models, the bridge, prompts and guard rails
 - [docs/TWEAK-SCHEMA.md](docs/TWEAK-SCHEMA.md): how to write a tweak, app, fix or preset
-- [docs/COMPARISON.md](docs/COMPARISON.md): what Rigwright does differently from WinUtil and similar tools, and why
+- [docs/COMPARISON.md](docs/COMPARISON.md): the problems with typical Windows tweak tools and how Rigwright handles each one
 - [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md): common problems and fixes
 - [docs/PRIVACY.md](docs/PRIVACY.md): what data goes where, per AI provider
 - [docs/GOVERNED-AGENTS.md](docs/GOVERNED-AGENTS.md): *Governed agents on the desktop: the Rigwright pattern*. The AI proposes, a catalog validates, a human approves and a journal rolls back.
@@ -374,4 +377,4 @@ Rigwright is free and always will be. If it saved you time, you can
 **Created by Joseph C McGinty Jr. & ResilientMind AI LLC.** Connect on [LinkedIn](https://www.linkedin.com/in/joseph-mcginty-jr/).
 Copyright © 2026 Joseph C McGinty Jr. & ResilientMind AI LLC. Released under the [MIT License](LICENSE).
 
-Inspired by [Chris Titus Tech's WinUtil](https://github.com/ChrisTitusTech/winutil) (MIT) and informed by O&O ShutUp10++, Win11Debloat, Sophia Script, privacy.sexy and UniGetUI. Rigwright is an independent project, not affiliated with or endorsed by Chris Titus Tech, Microsoft, Anthropic or Ollama. Windows is a trademark of Microsoft Corporation. Claude and Claude Code are trademarks of Anthropic, PBC. Ollama is a trademark of its respective owner.
+Informed by the approaches of O&O ShutUp10++, Win11Debloat, Sophia Script, privacy.sexy and UniGetUI. Rigwright is an independent project, not affiliated with or endorsed by Microsoft, Anthropic or Ollama. Windows is a trademark of Microsoft Corporation. Claude and Claude Code are trademarks of Anthropic, PBC. Ollama is a trademark of its respective owner.

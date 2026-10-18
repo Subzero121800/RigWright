@@ -136,6 +136,22 @@
         "description":  "Email, calendar and contacts"
     },
     {
+        "id":  "emclient.emclient",
+        "name":  "eM Client",
+        "winget":  "eMClient.eMClient",
+        "category":  "Communication",
+        "choco":  "",
+        "description":  "Email, calendar, contacts and chat; free tier is limited to personal use"
+    },
+    {
+        "id":  "betterbird.betterbird",
+        "name":  "Betterbird",
+        "winget":  "Betterbird.Betterbird",
+        "category":  "Communication",
+        "choco":  "betterbird",
+        "description":  "Thunderbird fork with extra fixes and features"
+    },
+    {
         "id":  "microsoft.visualstudiocode",
         "name":  "Visual Studio Code",
         "winget":  "Microsoft.VisualStudioCode",
@@ -398,6 +414,22 @@
         "category":  "Multimedia",
         "choco":  "handbrake",
         "description":  "Video converter"
+    },
+    {
+        "id":  "paulpacifico.shutterencoder",
+        "name":  "Shutter Encoder",
+        "winget":  "PaulPacifico.ShutterEncoder",
+        "category":  "Multimedia",
+        "choco":  "",
+        "description":  "Video, audio and image converter built on FFmpeg"
+    },
+    {
+        "id":  "avidemux.avidemux",
+        "name":  "Avidemux",
+        "winget":  "Avidemux.Avidemux",
+        "category":  "Multimedia",
+        "choco":  "avidemux",
+        "description":  "Simple video cutting, filtering and encoding"
     },
     {
         "id":  "clsid2.mpc-hc",
@@ -670,6 +702,22 @@
         "category":  "Utilities",
         "choco":  "wingetui",
         "description":  "GUI for winget, scoop, choco, pip, npm"
+    },
+    {
+        "id":  "chocolatey.chocolatey",
+        "name":  "Chocolatey",
+        "winget":  "Chocolatey.Chocolatey",
+        "category":  "Utilities",
+        "choco":  "chocolatey",
+        "description":  "Command-line package manager; enables the choco fallback in Rigwright"
+    },
+    {
+        "id":  "chocolatey.chocolateygui",
+        "name":  "Chocolatey GUI",
+        "winget":  "Chocolatey.ChocolateyGUI",
+        "category":  "Utilities",
+        "choco":  "chocolateygui",
+        "description":  "Graphical front-end for Chocolatey"
     },
     {
         "id":  "wagnardsoft.displaydriveruninstaller",

@@ -27,6 +27,18 @@ Install it from the Install page (*Runtimes → WebView2 Runtime*) or with
 Install the *.NET Desktop Runtime 9*, or build a self-contained exe with
 `tools\Build-Release.ps1 -SelfContained`.
 
+### `git clone` fails with "RPC failed; curl 92 HTTP/2 stream reset" or "early EOF"
+
+The repository includes about 45 MB of screenshots, and some connections or proxies reset large HTTP/2 transfers.
+Run the clone from a normal folder such as `~\Downloads` (not `C:\Windows\System32`) and tell Git to use HTTP/1.1:
+
+```powershell
+git config --global http.version HTTP/1.1
+git clone --depth 1 https://github.com/Subzero121800/RigWright.git
+```
+
+If it still fails, download the release zip instead; it contains everything needed to run Rigwright.
+
 ## Tweaks
 
 **A tweak shows "partly applied".**

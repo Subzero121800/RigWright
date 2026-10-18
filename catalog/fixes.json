@@ -108,6 +108,15 @@
         "script":  "Install-RwWinget\n$wg = Get-RwWinget\nif ($wg) { Invoke-RwNative $wg \u0027source reset --force --disable-interactivity\u0027 | Out-Null; Invoke-RwNative $wg \u0027source update --disable-interactivity\u0027 | Out-Null }\n\u0027winget repaired\u0027"
     },
     {
+        "id":  "fix.repairWebView2",
+        "name":  "Reset Microsoft Edge WebView2 runtime",
+        "category":  "Apps",
+        "description":  "Runs the Evergreen WebView2 installer in repair mode (or reinstalls the runtime through winget if the installer is missing). Fixes apps that show a blank window or crash on start. Rigwright Desktop uses WebView2 itself, so its window may go blank - just reopen the app afterwards.",
+        "risk":  "low",
+        "duration":  "medium",
+        "script":  "$base = ${env:ProgramFiles(x86)}; if (-not $base) { $base = $env:ProgramFiles }\n$setup = Get-ChildItem \"$base\\Microsoft\\EdgeWebView\\Application\\*\\Installer\\setup.exe\" -ErrorAction SilentlyContinue | Sort-Object { try { [version]$_.Directory.Parent.Name } catch { [version]\u00270.0\u0027 } } -Descending | Select-Object -First 1\nif ($setup) { $rc = Invoke-RwNative $setup.FullName \u0027--repair --msedgewebview --system-level\u0027; \"WebView2 runtime repaired with $($setup.FullName) (exit code $rc). Reopen Rigwright if its window went blank.\" }\nelse { $wg = Get-RwWinget; if ($wg) { $rc = Invoke-RwNative $wg \u0027install --id Microsoft.EdgeWebView2Runtime --exact --silent --accept-package-agreements --accept-source-agreements --disable-interactivity\u0027; \"Evergreen WebView2 installer not found - reinstalled the runtime through winget (exit code $rc). Reopen Rigwright if its window went blank.\" } else { \u0027WebView2 installer not found and winget is unavailable - install Microsoft Edge WebView2 Runtime from the Apps page.\u0027 } }"
+    },
+    {
         "id":  "fix.defenderQuick",
         "name":  "Microsoft Defender: quick scan",
         "category":  "Security",

@@ -1206,7 +1206,7 @@ function Test-RwUpdate {
         $r = Invoke-RestMethod -Uri $script:ReleaseApi -Headers @{ 'User-Agent' = "Rigwright/$($script:AppVersion)"; Accept = 'application/vnd.github+json' } -TimeoutSec 10 -UseBasicParsing
     } catch {
         $code = 0; try { $code = [int]$_.Exception.Response.StatusCode } catch { }
-        if ($code -eq 404) { return [ordered]@{ ok = $true; newer = $false; current = $script:AppVersion; message = 'No published releases found yet.' } }
+        if ($code -eq 404) { return [ordered]@{ ok = $true; newer = $false; current = $script:AppVersion; message = 'No published releases found yet (or the repository is not public).' } }
         throw "Could not reach GitHub: $($_.Exception.Message)"
     }
     $latest = "$($r.tag_name)".TrimStart('v', 'V')

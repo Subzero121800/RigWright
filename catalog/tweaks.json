@@ -715,6 +715,32 @@
         "restart":  "none"
     },
     {
+        "id":  "perf.deliveryOptimizationThrottle",
+        "name":  "Throttle Delivery Optimization in the background",
+        "category":  "Performance",
+        "risk":  "low",
+        "recommended":  false,
+        "description":  "Caps Delivery Optimization (Windows Update and Microsoft Store downloads) at 5% of your bandwidth for background downloads and 50% for downloads you start yourself, so updates stop hogging the connection while you work or game.",
+        "sideEffects":  "Updates and Store apps download more slowly. The caps apply to downloads from Microsoft servers and internet peers, not from PCs on your local network. Settings > Windows Update > Advanced options > Delivery Optimization shows the limits as managed by your organization. Windows no longer offers a documented upload cap (DOMaxUploadBandwidth is deprecated); pair this with \"Download updates from Microsoft only\" to stop uploads entirely.",
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization",
+                             "name":  "DOPercentageMaxBackgroundBandwidth",
+                             "type":  "DWord",
+                             "value":  5
+                         },
+                         {
+                             "path":  "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization",
+                             "name":  "DOPercentageMaxForegroundBandwidth",
+                             "type":  "DWord",
+                             "value":  50
+                         }
+                     ],
+        "restart":  "none",
+        "source":  "https://learn.microsoft.com/en-us/windows/deployment/do/waas-delivery-optimization-reference"
+    },
+    {
         "id":  "perf.storageSense",
         "name":  "Enable Storage Sense",
         "category":  "Performance",
@@ -730,6 +756,47 @@
                      ],
         "restart":  "none",
         "recommended":  false
+    },
+    {
+        "id":  "perf.storageSenseWeekly",
+        "name":  "Run Storage Sense weekly",
+        "category":  "Performance",
+        "risk":  "low",
+        "recommended":  false,
+        "description":  "Turns Storage Sense on and schedules it to run every week instead of only when disk space runs low, deleting temporary files that apps are no longer using. Your Downloads folder is never touched.",
+        "sideEffects":  "Temporary files are removed once a week. The Recycle Bin keeps whatever Storage Sense setting it already has (Windows default: items older than 30 days are emptied when Storage Sense runs). Review the schedule under Settings > System > Storage > Storage Sense.",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\StorageSense\\Parameters\\StoragePolicy",
+                             "name":  "01",
+                             "type":  "DWord",
+                             "value":  1,
+                             "undo":  0
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\StorageSense\\Parameters\\StoragePolicy",
+                             "name":  "2048",
+                             "type":  "DWord",
+                             "value":  7,
+                             "undo":  0
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\StorageSense\\Parameters\\StoragePolicy",
+                             "name":  "04",
+                             "type":  "DWord",
+                             "value":  1,
+                             "undo":  1
+                         },
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\StorageSense\\Parameters\\StoragePolicy",
+                             "name":  "32",
+                             "type":  "DWord",
+                             "value":  0,
+                             "undo":  0
+                         }
+                     ],
+        "restart":  "none",
+        "source":  "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-storage"
     },
     {
         "id":  "perf.folderDiscovery",
@@ -916,6 +983,27 @@
         "recommended":  false
     },
     {
+        "id":  "ui.spotlightDesktop",
+        "name":  "Disable Windows Spotlight desktop background",
+        "category":  "Appearance",
+        "risk":  "low",
+        "recommended":  false,
+        "description":  "Stops Windows Spotlight rotating Bing wallpapers on the desktop and fetching new images and captions from Microsoft in the background.",
+        "sideEffects":  "The \"Windows spotlight\" choice in Settings > Personalization > Background becomes unavailable. The current Spotlight wallpaper may stay until you pick another picture or theme. The lock screen is not affected.",
+        "minBuild":  22621,
+        "policy":  true,
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Policies\\Microsoft\\Windows\\CloudContent",
+                             "name":  "DisableSpotlightCollectionOnDesktop",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "restart":  "none",
+        "source":  "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-experience#allowspotlightcollection"
+    },
+    {
         "id":  "ui.fileExtensions",
         "name":  "Show file extensions",
         "category":  "Explorer",
@@ -991,6 +1079,26 @@
                          }
                      ],
         "recommended":  false
+    },
+    {
+        "id":  "ui.hideLearnAboutPicture",
+        "name":  "Hide the \"Learn about this picture\" desktop icon",
+        "category":  "Explorer",
+        "risk":  "low",
+        "recommended":  false,
+        "description":  "Removes the \"Learn about this picture\" icon that Windows Spotlight places on the desktop, while keeping the rotating Spotlight wallpapers.",
+        "sideEffects":  "You can no longer right-click the icon to switch to the next picture or open the image in Bing. Windows may put the icon back if you switch away from Windows spotlight and back again.",
+        "minBuild":  22000,
+        "restart":  "explorer",
+        "registry":  [
+                         {
+                             "path":  "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\HideDesktopIcons\\NewStartPanel",
+                             "name":  "{2cc5ca98-6485-489a-920e-b3e88a6ccce3}",
+                             "type":  "DWord",
+                             "value":  1
+                         }
+                     ],
+        "source":  "https://www.elevenforum.com/t/add-or-remove-learn-about-this-picture-desktop-icon-in-windows-11.4433/"
     },
     {
         "id":  "ui.classicMenu",
@@ -1293,6 +1401,33 @@
         "detect":  "[bool]((\u0026 \"$env:SystemRoot\\System32\\bcdedit.exe\" /enum \"{current}\") -match \"bootmenupolicy\\s+Legacy\")",
         "restart":  "none",
         "recommended":  false
+    },
+    {
+        "id":  "sys.connectedDevicesPlatform",
+        "name":  "Disable Connected Devices Platform service",
+        "category":  "System",
+        "risk":  "medium",
+        "recommended":  false,
+        "description":  "Stops the Connected Devices Platform (CDPSvc and the per-user CDPUserSvc), which keeps a background connection to Microsoft for cross-device features such as Nearby sharing, Phone Link and the shared clipboard.",
+        "sideEffects":  "Nearby sharing, Phone Link, clipboard sync across devices, \"Continue on PC\" and some Bluetooth and Project/Cast features stop working, and their Settings pages may show errors. Undo and reboot to get them back.",
+        "registry":  [
+                         {
+                             "path":  "HKLM\\SYSTEM\\CurrentControlSet\\Services\\CDPUserSvc",
+                             "name":  "Start",
+                             "type":  "DWord",
+                             "value":  4,
+                             "undo":  2
+                         }
+                     ],
+        "services":  [
+                         {
+                             "name":  "CDPSvc",
+                             "startup":  "Disabled",
+                             "undo":  "AutomaticDelayedStart"
+                         }
+                     ],
+        "restart":  "reboot",
+        "source":  "https://learn.microsoft.com/en-us/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server"
     },
     {
         "id":  "sec.pua",

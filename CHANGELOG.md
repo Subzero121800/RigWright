@@ -10,6 +10,13 @@ All notable changes to Rigwright are documented here. The format follows
 The first public release combines the initial build below with these changes.
 
 ### Added
+- Tweaks: throttle Delivery Optimization in the background, disable Windows Spotlight on the desktop, hide the
+  "Learn about this picture" icon, disable the Connected Devices Platform service (side effects documented), and run
+  Storage Sense weekly (#2, #3, #4, #6, #7).
+- Apps: eM Client, Betterbird, Chocolatey, Chocolatey GUI, Shutter Encoder and Avidemux (#9, #10, #11).
+- Debloat: 15 MSI and Acer preinstalled-app entries with verified package names and Store ids (#13).
+- Fix: "Reset Microsoft Edge WebView2 runtime" (#14).
+- Interactive screenshot gallery (docs/gallery.html, served by GitHub Pages) and README slideshow.
 - **One-click "Install & connect Claude Code"** for people with a Claude subscription. It installs the official
   `Anthropic.ClaudeCode` winget package, adds it to PATH, opens `claude auth login --claudeai`, waits for sign-in,
   switches Rigwright to Claude Code and tests it. The Settings page shows live Claude Code status.

@@ -574,5 +574,125 @@
         "safe":  false,
         "note":  "MyASUS/Armoury Crate control fans and keyboard lighting.",
         "storeId":  ""
+    },
+    {
+        "package":  "9426MICRO-STARINTERNATION.MSICenter",
+        "name":  "MSI Center",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Controls fan profiles, RGB lighting and performance modes on MSI hardware.",
+        "storeId":  "9NVMNJCR03XV"
+    },
+    {
+        "package":  "9426MICRO-STARINTERNATION.MSICenterS",
+        "name":  "MSI Center S",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Controls fans, lighting and performance modes on MSI laptops.",
+        "storeId":  "9N16ZDNSNS37"
+    },
+    {
+        "package":  "9426MICRO-STARINTERNATION.BusinessCenter",
+        "name":  "MSI Center Pro",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Controls performance and power modes on MSI business laptops.",
+        "storeId":  "9NQ4LGT81KGC"
+    },
+    {
+        "package":  "9426MICRO-STARINTERNATION.MSIGameBar",
+        "name":  "MSI Companion (Game Bar widget)",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "In-game overlay that shows and changes MSI Center settings.",
+        "storeId":  "9PCF0Q3L9QW9"
+    },
+    {
+        "package":  "9426MICRO-STARINTERNATION.DragonCenter",
+        "name":  "MSI Dragon Center",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Older MSI control app for fans, lighting and performance modes. No longer in the Store.",
+        "storeId":  ""
+    },
+    {
+        "package":  "9426MICRO-STARINTERNATION.*",
+        "name":  "MSI preinstalled apps",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "MSI Center/Dragon Center control fans, lighting and performance modes.",
+        "storeId":  ""
+    },
+    {
+        "package":  "A-Volute.Nahimic",
+        "name":  "Nahimic audio",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Audio enhancement bundled with MSI and other boards - sound may change after removal.",
+        "storeId":  "9N36PPMP8S23"
+    },
+    {
+        "package":  "AcerIncorporated.AcerRegistration",
+        "name":  "Acer Product Registration",
+        "category":  "OEM",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9P5S8GL5498P"
+    },
+    {
+        "package":  "AcerIncorporated.AcerCollection",
+        "name":  "Acer Collection",
+        "category":  "OEM",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9WZDNCRDRDCD"
+    },
+    {
+        "package":  "AcerIncorporated.AcerCollectionS",
+        "name":  "Acer Collection S",
+        "category":  "OEM",
+        "safe":  true,
+        "note":  "",
+        "storeId":  "9PPJJN34RCR7"
+    },
+    {
+        "package":  "AcerIncorporated.AcerCareCenterS",
+        "name":  "Acer Care Center S",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Handles Acer driver updates, system checks and recovery backups.",
+        "storeId":  "9P8BB54NQNQ4"
+    },
+    {
+        "package":  "AcerIncorporated.4703949AD09F",
+        "name":  "Acer Control Center S",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Acer support hub for driver updates and system checks.",
+        "storeId":  "9MZPX5WCBMWT"
+    },
+    {
+        "package":  "AcerIncorporated.PredatorSenseV30",
+        "name":  "PredatorSense",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Controls fans, overclocking and keyboard lighting on Predator laptops.",
+        "storeId":  "9MWXQ15JQ4XR"
+    },
+    {
+        "package":  "AcerIncorporated.*QuickAccess*",
+        "name":  "Acer Quick Access",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Controls hotkeys and quick settings on Acer laptops.",
+        "storeId":  ""
+    },
+    {
+        "package":  "AcerIncorporated.*",
+        "name":  "Acer preinstalled apps",
+        "category":  "OEM",
+        "safe":  false,
+        "note":  "Some Acer apps control hotkeys, fans or lighting.",
+        "storeId":  ""
     }
 ]
